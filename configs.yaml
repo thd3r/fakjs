@@ -1,0 +1,3413 @@
+patterns:
+  - name: Url & Path
+    regex:
+      - (?i)(((?:[a-zA-Z]{1,10}://|//)[^"'/]{1,}\.[a-zA-Z]{2,}[^"']{0,})|((?:/|\.\./|\./)[^"'><,;| *()(%%$^/\\\[\]][^"'><,;|()]{1,})|([a-zA-Z0-9_\-/]{1,}/[a-zA-Z0-9_\-/.]{1,}\.(?:[a-zA-Z]{1,4}|action)(?:[\?|#][^"|']{0,}|))|([a-zA-Z0-9_\-/]{1,}/[a-zA-Z0-9_\-/]{3,}(?:[\?|#][^"|']{0,}|))|([a-zA-Z0-9_\-]{1,}\.(?:php|asp|aspx|jsp|json|action|html|js|txt|xml)(?:[\?|#][^"|']{0,}|)))
+  - name: S3 Buckets
+    regex:
+      - 'https?://(?:[\w\-]+\.)?s3(?:[\.-][\w\-]+)?\.amazonaws\.com[\w\-\./]*'
+      - '//s3\\.amazonaws\\.com/[a-z0-9._-]+'
+      - '[a-z0-9.-]+\\.s3-[a-z0-9-]\\.amazonaws\\.com'
+      - '[a-z0-9.-]+\\.s3-website[.-](eu|ap|us|ca|sa|cn)'
+      - '[a-z0-9.-]+\\.s3\\.amazonaws\\.com'
+      - 'amzn\\.mws\\.[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+  - name: GCS
+    regex:
+      - 'https?://(?:[\w\-]+\.)?storage\.googleapis\.com[\w\-\./]*'
+  - name: Azure Blob
+    regex:
+      - 'https?://[\w\-]+\.blob\.core\.windows\.net[\w\-\./]*'
+  - name: Cloudfront
+    regex:
+      - 'https?://[\w\-]+\.cloudfront\.net[\w\-\./]*'
+  - name: Auth Basic
+    regex:
+      - 'basic [a-zA-Z0-9_\-:\.=]+'
+  - name: Auth Bearer
+    regex:
+      - 'bearer [a-zA-Z0-9_\-\.=]+'
+  - name: Auth Http
+    regex:
+      - '(https?://)[a-zA-Z0-9]+:[a-zA-Z0-9]+@[a-zA-Z0-9]+\\.[a-zA-Z]+'
+  - name: Aws Client Id
+    regex:
+      - '(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}'
+  - name: Aws Keys
+    regex:
+      - '([^A-Z0-9]|^)(AKIA|A3T|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{12,}'
+  - name: Aws Mvs Key
+    regex:
+      - 'amzn\\.mws\\.[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+  - name: Aws Secret Key
+    regex:
+      - '(?i)aws(.{0,20})?["''][0-9a-zA-Z/+]{40}["'']'
+  - name: cloudinary-basic-auth
+    regex:
+      - 'cloudinary://[0-9]{15}:[0-9A-Za-z]+@[a-z]+'
+  - name: facebook access token
+    regex:
+      - 'EAACEdEose0cBA[0-9A-Za-z]+'
+  - name: facebook client id
+    regex:
+      - '(?i)(facebook|fb)(.{0,20})?["''][0-9]{13,17}'
+  - name: facebook secret key
+    regex:
+      - '(?i)(facebook|fb)(.{0,20})?["''][0-9a-f]{32}'
+  - name: firebase
+    regex:
+      - 'firebaseio\\.com'
+  - name: github
+    regex:
+      - '(?i)github(.{0,20})?["''][0-9a-zA-Z]{35,40}'
+  - name: google api|drive|youtube key
+    regex:
+      - 'AIza[0-9A-Za-z\\-_]{35}'
+  - name: google cloud key
+    regex:
+      - '(?i)(google|gcp|youtube|drive|yt)(.{0,20})?["'']AIza[0-9A-Za-z\\-_]{35}["'']'
+  - name: google oauth token
+    regex:
+      - 'ya29\\.[0-9A-Za-z\\-_]+'
+  - name: heroku api key
+    regex:
+      - '[hH][eE][rR][oO][kK][uU].{0,30}[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}'
+  - name: ipv4
+    regex:
+      - '(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}'
+  - name: json sec
+    regex:
+      - '(\\?\"|&quot;|%22)[a-zA-Z0-9_-]*(api[_-]?key|S3|aws_|secret|passw|auth)[a-zA-Z0-9_-]*(\\?\"|&quot;|%22): ?(\\?\"|&quot;|%22)[^\"&]+(\\?\"|&quot;|%22)'
+  - name: linkedin
+    regex:
+      - '(?i)linkedin(.{0,20})?["''][0-9a-z]{12}["'']'
+  - name: linkedin secret
+    regex:
+      - '(?i)linkedin(.{0,20})?["''][0-9a-z]{16}["'']'
+  - name: mailchamp
+    regex:
+      - '[0-9a-f]{32}-us[0-9]{1,2}'
+  - name: mailgun api key
+    regex:
+      - 'key-[0-9a-zA-Z]{32}'
+  - name: picatic api
+    regex:
+      - 'sk_live_[0-9a-z]{32}'
+  - name: s3 buckets
+    regex:
+      - '[a-z0-9.-]+\\.s3\\.amazonaws\\.com'
+      - '[a-z0-9.-]+\\.s3-[a-z0-9-]+\\.amazonaws\\.com'
+      - '[a-z0-9.-]+\\.s3-website[.-](eu|ap|us|ca|sa|cn)'
+      - '//s3\\.amazonaws\\.com/[a-z0-9._-]+'
+      - '//s3-[a-z0-9-]+\\.amazonaws\\.com/[a-z0-9._-]+'
+  - name: slack token
+    regex:
+      - 'xox[baprs]-[0-9a-zA-Z]{10,48}'
+  - name: slack webhook
+    regex:
+      - 'https://hooks\\.slack\\.com/services/T[a-zA-Z0-9_]{10}/B[a-zA-Z0-9_]{10}/[a-zA-Z0-9_]{24}'
+  - name: square secret
+    regex:
+      - 'sq0csp-[0-9A-Za-z\\-_]{43}'
+  - name: square token
+    regex:
+      - 'sqOatp-[0-9A-Za-z\\-_]{22}'
+  - name: stripe key
+    regex:
+      - '(?:r|s)k_live_[0-9a-zA-Z]{24}'
+  - name: twilio keys
+    regex:
+      - 'SK[0-9a-fA-F]{32}'
+  - name: twitter key
+    regex:
+      - '(?i)twitter(.{0,20})?["''][0-9a-z]{18,25}'
+  - name: twitter oauth
+    regex:
+      - '[tT][wW][iI][tT][tT][eE][rR].{0,30}["''\\s][0-9a-zA-Z]{35,44}["''\\s]'
+  - name: twitter secret
+    regex:
+      - '(?i)twitter(.{0,20})?["''][0-9a-z]{35,44}'
+  - name: Shopify Private App Access Token
+    regex:
+    - 'shppa_[a-fA-F0-9]{32}'
+  - name: Postman API Key
+    regex:
+    - '\b(PMAK-[a-zA-Z0-9]{24}-[a-zA-Z0-9]{34})\b'
+  - name: RubyGems API Key
+    regex:
+    - '(rubygems_[a-f0-9]{48})'
+  - name: Flickr Access Token
+    regex:
+    - '(?i)(?:flickr)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|'']|[\s|"]){0,3}(?:=|>|:=|\|\|:|<=|=>|:)(?:''|\"|\s|=|\x60){0,5}([a-z0-9]{32})(?:[''|\"|\n|\r|\s|\x60|;]|$)'
+  - name: Firebase Cloud Messaging Token
+    regex:
+    - '[A-Za-z0-9-_]+:APA91b[A-Za-z0-9-_#]+'
+  - name: Slack Webhook
+    regex:
+    - 'https://hooks.slack.com/services/T[0-9A-Za-z\-_]{8}/B[0-9A-Za-z\-_]{8}/[0-9A-Za-z\-_]{24}'
+  - name: Twilio API Key
+    regex:
+    - '(?i)twilio(.{0,20})?SK[0-9a-f]{32}'
+  - name: Paypal Braintree Access Token
+    regex:
+    - 'access_token\$production\$[0-9a-z]{16}\$[0-9a-f]{32}'
+  - name: Beamer API Token
+    regex:
+    - '(?i)(?:beamer)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|'']|[\s|"]){0,3}(?:=|>|:=|\|\|:|<=|=>|:)(?:''|\"|\s|=|\x60){0,5}(b_[a-z0-9=_\-]{44})(?:[''|\"|\n|\r|\s|\x60|;]|$)'
+  - name: Shopify Access Token
+    regex:
+    - 'shpat_[a-fA-F0-9]{32}'
+  - name: Algolia API Key
+    regex:
+    - '(?i)(?:algolia)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|'']|[\s|"]){0,3}(?:=|>|:=|\|\|:|<=|=>|:)(?:''|\"|\s|=|\x60){0,5}([a-z0-9]{32})(?:[''|\"|\n|\r|\s|\x60|;]|$)'
+  - name: Square OAuth Secret
+    regex:
+    - 'sq0csp-[0-9A-Za-z\-_]{43}'
+  - name: Heroku API Key
+    regex:
+    - '(?i)heroku.{0,20}key.{0,20}\b([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\b'
+  - name: Hashicorp API Token
+    regex:
+    - '(?i)[a-z0-9]{14}\.atlasv1\.[a-z0-9\-_=]{60,70}'
+  - name: Mapbox Token
+    regex:
+    - 'pk\.eyJ1Ijoi\w+\.[\w-]*'
+  - name: Mapbox Token
+    regex:
+    - 'sk\.eyJ1Ijoi\w+\.[\w-]*'
+  - name: Branch.io Live Key - Detect
+    regex:
+    - 'key_live_.{32}'
+  - name: Slack API Key
+    regex:
+    - 'xox[baprs]-([0-9a-zA-Z]{10,48})?'
+  - name: Mailchimp API Key
+    regex:
+    - '[0-9a-f]{32}-us[0-9]{1,2}'
+  - name: Sendgrid API Key
+    regex:
+    - 'SG\.[a-zA-Z0-9]{22}\.[a-zA-Z0-9]{43}'
+  - name: Droneci Access Token
+    regex:
+    - '(?i)(?:droneci)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|'']|[\s|"]){0,3}(?:=|>|:=|\|\|:|<=|=>|:)(?:''|\"|\s|=|\x60){0,5}([a-z0-9]{32})(?:[''|\"|\n|\r|\s|\x60|;]|$)'
+  - name: Doppler API Token
+    regex:
+    - '(dp\.pt\.)(?i)[a-z0-9]{43}'
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?zopim[_-]?account[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?zhuliang[_-]?gh[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?zensonatypepassword[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - '(?i)zendesk(_api_token|_key|_token|-travis-github|_url|_username)(\s|=)'
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?yt[_-]?server[_-]?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?yt[_-]?partner[_-]?refresh[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n\
+      ]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?yt[_-]?partner[_-]?client[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\n\
+      ]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?yt[_-]?client[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?yt[_-]?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?yt[_-]?account[_-]?refresh[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n\
+      ]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?yt[_-]?account[_-]?client[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\n\
+      ]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?yangshun[_-]?gh[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?yangshun[_-]?gh[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?www[_-]?googleapis[_-]?com[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?wpt[_-]?ssh[_-]?connect[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?wpt[_-]?prepare[_-]?dir[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?wpt[_-]?db[_-]?user[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?wpt[_-]?db[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?wporg[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?wpjm[_-]?phpunit[_-]?google[_-]?geocode[_-]?api[_-]?key[\"']?[^\\\
+      S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?wordpress[_-]?db[_-]?user[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?wordpress[_-]?db[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?wincert[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?widget[_-]?test[_-]?server[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?widget[_-]?fb[_-]?password[_-]?3[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?widget[_-]?fb[_-]?password[_-]?2[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?widget[_-]?fb[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?widget[_-]?basic[_-]?password[_-]?5[\"']?[^\\S\r\n]*[=:][^\\S\r\n\
+      ]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?widget[_-]?basic[_-]?password[_-]?4[\"']?[^\\S\r\n]*[=:][^\\S\r\n\
+      ]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?widget[_-]?basic[_-]?password[_-]?3[\"']?[^\\S\r\n]*[=:][^\\S\r\n\
+      ]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?widget[_-]?basic[_-]?password[_-]?2[\"']?[^\\S\r\n]*[=:][^\\S\r\n\
+      ]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?widget[_-]?basic[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?watson[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?watson[_-]?device[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?watson[_-]?conversation[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n\
+      ]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?wakatime[_-]?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?vscetoken[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?visual[_-]?recognition[_-]?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\
+      \n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?virustotal[_-]?apikey[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?vip[_-]?github[_-]?deploy[_-]?key[_-]?pass[\"']?[^\\S\r\n]*[=:][^\\\
+      S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?vip[_-]?github[_-]?deploy[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?vip[_-]?github[_-]?build[_-]?repo[_-]?deploy[_-]?key[\"']?[^\\S\r\n\
+      ]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?v[_-]?sfdc[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?v[_-]?sfdc[_-]?client[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?usertravis[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?user[_-]?assets[_-]?secret[_-]?access[_-]?key[\"']?[^\\S\r\n]*[=:][^\\\
+      S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?user[_-]?assets[_-]?access[_-]?key[_-]?id[\"']?[^\\S\r\n]*[=:][^\\\
+      S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?use[_-]?ssh[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?us[_-]?east[_-]?1[_-]?elb[_-]?amazonaws[_-]?com[\"']?[^\\S\r\n]*[=:][^\\\
+      S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?urban[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?urban[_-]?master[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?urban[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?unity[_-]?serial[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?unity[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?twitteroauthaccesstoken[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?twitteroauthaccesssecret[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?twitter[_-]?consumer[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?twitter[_-]?consumer[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?twine[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?twilio[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?twilio[_-]?sid[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?twilio[_-]?configuration[_-]?sid[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?twilio[_-]?chat[_-]?account[_-]?api[_-]?service[\"']?[^\\S\r\n]*[=:][^\\\
+      S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?twilio[_-]?api[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?twilio[_-]?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?trex[_-]?okta[_-]?client[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?trex[_-]?client[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?travis[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?travis[_-]?secure[_-]?env[_-]?vars[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?travis[_-]?pull[_-]?request[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?travis[_-]?gh[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?travis[_-]?e2e[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?travis[_-]?com[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?travis[_-]?branch[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?travis[_-]?api[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?travis[_-]?access[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?token[_-]?core[_-]?java[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?thera[_-]?oss[_-]?access[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?tester[_-]?keys[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?test[_-]?test[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?test[_-]?github[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?tesco[_-]?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?svn[_-]?pass[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?surge[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?surge[_-]?login[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?stripe[_-]?public[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?stripe[_-]?private[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?strip[_-]?secret[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?strip[_-]?publishable[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?stormpath[_-]?api[_-]?key[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\n\
+      ]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?stormpath[_-]?api[_-]?key[_-]?id[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?starship[_-]?auth[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?starship[_-]?account[_-]?sid[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?star[_-]?test[_-]?secret[_-]?access[_-]?key[\"']?[^\\S\r\n]*[=:][^\\\
+      S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?star[_-]?test[_-]?location[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?star[_-]?test[_-]?bucket[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?star[_-]?test[_-]?aws[_-]?access[_-]?key[_-]?id[\"']?[^\\S\r\n]*[=:][^\\\
+      S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?staging[_-]?base[_-]?url[_-]?runscope[\"']?[^\\S\r\n]*[=:][^\\S\r\n\
+      ]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?ssmtp[_-]?config[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?sshpass[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?srcclr[_-]?api[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?square[_-]?reader[_-]?sdk[_-]?repository[_-]?password[\"']?[^\\S\r\
+      \n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?sqssecretkey[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?sqsaccesskey[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?spring[_-]?mail[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?spotify[_-]?api[_-]?client[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\n\
+      ]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?spotify[_-]?api[_-]?access[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n\
+      ]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?spaces[_-]?secret[_-]?access[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n\
+      ]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?spaces[_-]?access[_-]?key[_-]?id[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?soundcloud[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?soundcloud[_-]?client[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?sonatypepassword[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?sonatype[_-]?token[_-]?user[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?sonatype[_-]?token[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?sonatype[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?sonatype[_-]?pass[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?sonatype[_-]?nexus[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?sonatype[_-]?gpg[_-]?passphrase[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?sonatype[_-]?gpg[_-]?key[_-]?name[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?sonar[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?sonar[_-]?project[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?sonar[_-]?organization[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?socrata[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?socrata[_-]?app[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?snyk[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?snyk[_-]?api[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?snoowrap[_-]?refresh[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?snoowrap[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?snoowrap[_-]?client[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?slate[_-]?user[_-]?email[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?slash[_-]?developer[_-]?space[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n\
+      ]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?slash[_-]?developer[_-]?space[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?signing[_-]?key[_-]?sid[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?signing[_-]?key[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?signing[_-]?key[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?signing[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?setsecretkey[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?setdstsecretkey[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?setdstaccesskey[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?ses[_-]?secret[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?ses[_-]?access[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?service[_-]?account[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?sentry[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?sentry[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?sentry[_-]?endpoint[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?sentry[_-]?default[_-]?org[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?sentry[_-]?auth[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?sendwithus[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?sendgrid[_-]?username[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?sendgrid[_-]?user[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?sendgrid[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?sendgrid[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?sendgrid[_-]?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?sendgrid[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?selion[_-]?selenium[_-]?host[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?selion[_-]?log[_-]?level[_-]?dev[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?segment[_-]?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?secretkey[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?secretaccesskey[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?secret[_-]?key[_-]?base[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?secret[_-]?9[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?secret[_-]?8[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?secret[_-]?7[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?secret[_-]?6[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?secret[_-]?5[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?secret[_-]?4[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?secret[_-]?3[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?secret[_-]?2[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?secret[_-]?11[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?secret[_-]?10[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?secret[_-]?1[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?secret[_-]?0[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?sdr[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?scrutinizer[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?sauce[_-]?access[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?sandbox[_-]?aws[_-]?secret[_-]?access[_-]?key[\"']?[^\\S\r\n]*[=:][^\\\
+      S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?sandbox[_-]?aws[_-]?access[_-]?key[_-]?id[\"']?[^\\S\r\n]*[=:][^\\\
+      S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?sandbox[_-]?access[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?salesforce[_-]?bulk[_-]?test[_-]?security[_-]?token[\"']?[^\\S\r\n\
+      ]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?salesforce[_-]?bulk[_-]?test[_-]?password[\"']?[^\\S\r\n]*[=:][^\\\
+      S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?sacloud[_-]?api[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?sacloud[_-]?access[_-]?token[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\
+      \n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?sacloud[_-]?access[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?s3[_-]?user[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?s3[_-]?secret[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?s3[_-]?secret[_-]?assets[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?s3[_-]?secret[_-]?app[_-]?logs[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?s3[_-]?key[_-]?assets[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?s3[_-]?key[_-]?app[_-]?logs[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?s3[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?s3[_-]?external[_-]?3[_-]?amazonaws[_-]?com[\"']?[^\\S\r\n]*[=:][^\\\
+      S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?s3[_-]?bucket[_-]?name[_-]?assets[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?s3[_-]?bucket[_-]?name[_-]?app[_-]?logs[\"']?[^\\S\r\n]*[=:][^\\S\r\
+      \n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?s3[_-]?access[_-]?key[_-]?id[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?s3[_-]?access[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?rubygems[_-]?auth[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?rtd[_-]?store[_-]?pass[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?rtd[_-]?key[_-]?pass[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?route53[_-]?access[_-]?key[_-]?id[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?ropsten[_-]?private[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?rinkeby[_-]?private[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?rest[_-]?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?repotoken[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?reporting[_-]?webdav[_-]?url[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?reporting[_-]?webdav[_-]?pwd[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?release[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?release[_-]?gh[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?registry[_-]?secure[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?registry[_-]?pass[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?refresh[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?rediscloud[_-]?url[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?redis[_-]?stunnel[_-]?urls[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?randrmusicapiaccesstoken[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?rabbitmq[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?quip[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?qiita[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?pypi[_-]?passowrd[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?pushover[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?publish[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?publish[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?publish[_-]?access[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?project[_-]?config[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?prod[_-]?secret[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?prod[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?prod[_-]?access[_-]?key[_-]?id[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?private[_-]?signing[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?pring[_-]?mail[_-]?username[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?preferred[_-]?username[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?prebuild[_-]?auth[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?postgresql[_-]?pass[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?postgresql[_-]?db[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?postgres[_-]?env[_-]?postgres[_-]?password[\"']?[^\\S\r\n]*[=:][^\\\
+      S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?postgres[_-]?env[_-]?postgres[_-]?db[\"']?[^\\S\r\n]*[=:][^\\S\r\n\
+      ]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?plugin[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?plotly[_-]?apikey[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?places[_-]?apikey[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?places[_-]?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?pg[_-]?host[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?pg[_-]?database[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?personal[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?personal[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?percy[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?percy[_-]?project[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?paypal[_-]?client[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?passwordtravis[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?parse[_-]?js[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?pagerduty[_-]?apikey[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?packagecloud[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?ossrh[_-]?username[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?ossrh[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?ossrh[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?ossrh[_-]?pass[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?ossrh[_-]?jira[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?os[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?os[_-]?auth[_-]?url[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?org[_-]?project[_-]?gradle[_-]?sonatype[_-]?nexus[_-]?password[\"\
+      ']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?org[_-]?gradle[_-]?project[_-]?sonatype[_-]?nexus[_-]?password[\"\
+      ']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?openwhisk[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?open[_-]?whisk[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?onesignal[_-]?user[_-]?auth[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n\
+      ]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?onesignal[_-]?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?omise[_-]?skey[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?omise[_-]?pubkey[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?omise[_-]?pkey[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?omise[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?okta[_-]?oauth2[_-]?clientsecret[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?okta[_-]?oauth2[_-]?client[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\n\
+      ]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?okta[_-]?client[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?ofta[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?ofta[_-]?region[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?ofta[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?octest[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?octest[_-]?app[_-]?username[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?octest[_-]?app[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?oc[_-]?pass[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?object[_-]?store[_-]?creds[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?object[_-]?store[_-]?bucket[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?object[_-]?storage[_-]?region[_-]?name[\"']?[^\\S\r\n]*[=:][^\\S\r\
+      \n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?object[_-]?storage[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?oauth[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?numbers[_-]?service[_-]?pass[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?nuget[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?nuget[_-]?apikey[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?nuget[_-]?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?npm[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?npm[_-]?secret[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?npm[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?npm[_-]?email[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?npm[_-]?auth[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?npm[_-]?api[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?npm[_-]?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?now[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?non[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?node[_-]?pre[_-]?gyp[_-]?secretaccesskey[\"']?[^\\S\r\n]*[=:][^\\\
+      S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?node[_-]?pre[_-]?gyp[_-]?github[_-]?token[\"']?[^\\S\r\n]*[=:][^\\\
+      S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?node[_-]?pre[_-]?gyp[_-]?accesskeyid[\"']?[^\\S\r\n]*[=:][^\\S\r\n\
+      ]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?node[_-]?env[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?ngrok[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?ngrok[_-]?auth[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?nexuspassword[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?nexus[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?new[_-]?relic[_-]?beta[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?netlify[_-]?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?nativeevents[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?mysqlsecret[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?mysqlmasteruser[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?mysql[_-]?username[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?mysql[_-]?user[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?mysql[_-]?root[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?mysql[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?mysql[_-]?hostname[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?mysql[_-]?database[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?my[_-]?secret[_-]?env[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?multi[_-]?workspace[_-]?sid[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?multi[_-]?workflow[_-]?sid[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?multi[_-]?disconnect[_-]?sid[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?multi[_-]?connect[_-]?sid[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?multi[_-]?bob[_-]?sid[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?minio[_-]?secret[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?minio[_-]?access[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?mile[_-]?zero[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?mh[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?mh[_-]?apikey[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?mg[_-]?public[_-]?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?mg[_-]?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?mapboxaccesstoken[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?mapbox[_-]?aws[_-]?secret[_-]?access[_-]?key[\"']?[^\\S\r\n]*[=:][^\\\
+      S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?mapbox[_-]?aws[_-]?access[_-]?key[_-]?id[\"']?[^\\S\r\n]*[=:][^\\\
+      S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?mapbox[_-]?api[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?mapbox[_-]?access[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?manifest[_-]?app[_-]?url[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?manifest[_-]?app[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?mandrill[_-]?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?managementapiaccesstoken[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?management[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?manage[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?manage[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?mailgun[_-]?secret[_-]?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?mailgun[_-]?pub[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?mailgun[_-]?pub[_-]?apikey[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?mailgun[_-]?priv[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?mailgun[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?mailgun[_-]?apikey[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?mailgun[_-]?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?mailer[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?mailchimp[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?mailchimp[_-]?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?mail[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?magento[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?magento[_-]?auth[_-]?username [\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?magento[_-]?auth[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?lottie[_-]?upload[_-]?cert[_-]?key[_-]?store[_-]?password[\"']?[^\\\
+      S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?lottie[_-]?upload[_-]?cert[_-]?key[_-]?password[\"']?[^\\S\r\n]*[=:][^\\\
+      S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?lottie[_-]?s3[_-]?secret[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?lottie[_-]?happo[_-]?secret[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n\
+      ]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?lottie[_-]?happo[_-]?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?looker[_-]?test[_-]?runner[_-]?client[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\\
+      S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?ll[_-]?shared[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?ll[_-]?publish[_-]?url[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?linux[_-]?signing[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?linkedin[_-]?client[_-]?secretor lottie[_-]?s3[_-]?api[_-]?key[\"\
+      ']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?lighthouse[_-]?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?lektor[_-]?deploy[_-]?username[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?lektor[_-]?deploy[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?leanplum[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?kxoltsn3vogdop92m[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?kubeconfig[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?kubecfg[_-]?s3[_-]?path[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?kovan[_-]?private[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?keystore[_-]?pass[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?kafka[_-]?rest[_-]?url[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?kafka[_-]?instance[_-]?name[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?kafka[_-]?admin[_-]?url[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?jwt[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?jdbc:mysql[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?jdbc[_-]?host[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?jdbc[_-]?databaseurl[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?itest[_-]?gh[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?ios[_-]?docs[_-]?deploy[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?internal[_-]?secrets[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?integration[_-]?test[_-]?appid[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?integration[_-]?test[_-]?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n\
+      ]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?index[_-]?name[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?ij[_-]?repo[_-]?username[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?ij[_-]?repo[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?hub[_-]?dxia2[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?homebrew[_-]?github[_-]?api[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n\
+      ]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?hockeyapp[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?heroku[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?heroku[_-]?email[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?heroku[_-]?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?hb[_-]?codesign[_-]?key[_-]?pass[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?hb[_-]?codesign[_-]?gpg[_-]?pass[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?hab[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?hab[_-]?auth[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?grgit[_-]?user[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?gren[_-]?github[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?gradle[_-]?signing[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?gradle[_-]?signing[_-]?key[_-]?id[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?gradle[_-]?publish[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?gradle[_-]?publish[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?gpg[_-]?secret[_-]?keys[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?gpg[_-]?private[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?gpg[_-]?passphrase[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?gpg[_-]?ownertrust[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?gpg[_-]?keyname[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?gpg[_-]?key[_-]?name[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?google[_-]?private[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?google[_-]?maps[_-]?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?google[_-]?client[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?google[_-]?client[_-]?id[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?google[_-]?client[_-]?email[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?google[_-]?account[_-]?type[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?gogs[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?gitlab[_-]?user[_-]?email[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?github[_-]?tokens[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?github[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?github[_-]?repo[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?github[_-]?release[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?github[_-]?pwd[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?github[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?github[_-]?oauth[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?github[_-]?oauth[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?github[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?github[_-]?hunter[_-]?username[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?github[_-]?hunter[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?github[_-]?deployment[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?github[_-]?deploy[_-]?hb[_-]?doc[_-]?pass[\"']?[^\\S\r\n]*[=:][^\\\
+      S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?github[_-]?client[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?github[_-]?auth[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?github[_-]?auth[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?github[_-]?api[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?github[_-]?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?github[_-]?access[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?git[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?git[_-]?name[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?git[_-]?email[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?git[_-]?committer[_-]?name[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?git[_-]?committer[_-]?email[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?git[_-]?author[_-]?name[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?git[_-]?author[_-]?email[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?ghost[_-]?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?ghb[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?gh[_-]?unstable[_-]?oauth[_-]?client[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\\
+      S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?gh[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?gh[_-]?repo[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?gh[_-]?oauth[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?gh[_-]?oauth[_-]?client[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?gh[_-]?next[_-]?unstable[_-]?oauth[_-]?client[_-]?secret[\"']?[^\\\
+      S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?gh[_-]?next[_-]?unstable[_-]?oauth[_-]?client[_-]?id[\"']?[^\\S\r\n\
+      ]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?gh[_-]?next[_-]?oauth[_-]?client[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\\
+      S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?gh[_-]?email[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?gh[_-]?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?gcs[_-]?bucket[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?gcr[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?gcloud[_-]?service[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?gcloud[_-]?project[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?gcloud[_-]?bucket[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?ftp[_-]?username[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?ftp[_-]?user[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?ftp[_-]?pw[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?ftp[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?ftp[_-]?login[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?ftp[_-]?host[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?fossa[_-]?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?flickr[_-]?api[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?flickr[_-]?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?flask[_-]?secret[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?firefox[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?firebase[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?firebase[_-]?project[_-]?develop[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?firebase[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?firebase[_-]?api[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?firebase[_-]?api[_-]?json[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?file[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?exp[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?eureka[_-]?awssecretkey[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?env[_-]?sonatype[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?env[_-]?secret[_-]?access[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?env[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?env[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?env[_-]?heroku[_-]?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?env[_-]?github[_-]?oauth[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?end[_-]?user[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?encryption[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?elasticsearch[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?elastic[_-]?cloud[_-]?auth[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?dsonar[_-]?projectkey[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?dsonar[_-]?login[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?droplet[_-]?travis[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?dropbox[_-]?oauth[_-]?bearer[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?doordash[_-]?auth[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?dockerhubpassword[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?dockerhub[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?docker[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?docker[_-]?postgres[_-]?url[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?docker[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?docker[_-]?passwd[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?docker[_-]?pass[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?docker[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?docker[_-]?hub[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?digitalocean[_-]?ssh[_-]?key[_-]?ids[\"']?[^\\S\r\n]*[=:][^\\S\r\n\
+      ]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?digitalocean[_-]?ssh[_-]?key[_-]?body[\"']?[^\\S\r\n]*[=:][^\\S\r\n\
+      ]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?digitalocean[_-]?access[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?dgpg[_-]?passphrase[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?deploy[_-]?user[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?deploy[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?deploy[_-]?secure[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?deploy[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?ddgc[_-]?github[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?ddg[_-]?test[_-]?email[_-]?pw[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?ddg[_-]?test[_-]?email[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?db[_-]?username[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?db[_-]?user[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?db[_-]?pw[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?db[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?db[_-]?host[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?db[_-]?database[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?db[_-]?connection[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?datadog[_-]?app[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?datadog[_-]?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?database[_-]?username[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?database[_-]?user[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?database[_-]?port[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?database[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?database[_-]?name[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?database[_-]?host[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?danger[_-]?github[_-]?api[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n\
+      ]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?cypress[_-]?record[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?coverity[_-]?scan[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?coveralls[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?coveralls[_-]?repo[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?coveralls[_-]?api[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?cos[_-]?secrets[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?conversation[_-]?username[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?conversation[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?contentful[_-]?v2[_-]?access[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\
+      \n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?contentful[_-]?test[_-]?org[_-]?cma[_-]?token[\"']?[^\\S\r\n]*[=:][^\\\
+      S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?contentful[_-]?php[_-]?management[_-]?test[_-]?token[\"']?[^\\S\r\n\
+      ]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?contentful[_-]?management[_-]?api[_-]?access[_-]?token[_-]?new[\"\
+      ']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?contentful[_-]?management[_-]?api[_-]?access[_-]?token[\"']?[^\\S\r\
+      \n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?contentful[_-]?integration[_-]?management[_-]?token[\"']?[^\\S\r\n\
+      ]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?contentful[_-]?cma[_-]?test[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n\
+      ]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?contentful[_-]?access[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?consumerkey[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?consumer[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?conekta[_-]?apikey[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?coding[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?codecov[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?codeclimate[_-]?repo[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?codacy[_-]?project[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?cocoapods[_-]?trunk[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?cocoapods[_-]?trunk[_-]?email[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?cn[_-]?secret[_-]?access[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?cn[_-]?access[_-]?key[_-]?id[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?clu[_-]?ssh[_-]?private[_-]?key[_-]?base64[\"']?[^\\S\r\n]*[=:][^\\\
+      S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?clu[_-]?repo[_-]?url[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?cloudinary[_-]?url[_-]?staging[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?cloudinary[_-]?url[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?cloudflare[_-]?email[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?cloudflare[_-]?auth[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?cloudflare[_-]?auth[_-]?email[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?cloudflare[_-]?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?cloudant[_-]?service[_-]?database[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?cloudant[_-]?processed[_-]?database[\"']?[^\\S\r\n]*[=:][^\\S\r\n\
+      ]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?cloudant[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?cloudant[_-]?parsed[_-]?database[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?cloudant[_-]?order[_-]?database[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?cloudant[_-]?instance[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?cloudant[_-]?database[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?cloudant[_-]?audited[_-]?database[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?cloudant[_-]?archived[_-]?database[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?cloud[_-]?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?clojars[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?client[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?cli[_-]?e2e[_-]?cma[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?claimr[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?claimr[_-]?superuser[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?claimr[_-]?db[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?claimr[_-]?database[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?ci[_-]?user[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?ci[_-]?server[_-]?name[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?ci[_-]?registry[_-]?user[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?ci[_-]?project[_-]?url[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?ci[_-]?deploy[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?chrome[_-]?refresh[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?chrome[_-]?client[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?cheverny[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?cf[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?certificate[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?censys[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?cattle[_-]?secret[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?cattle[_-]?agent[_-]?instance[_-]?auth[\"']?[^\\S\r\n]*[=:][^\\S\r\
+      \n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?cattle[_-]?access[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?cargo[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?cache[_-]?s3[_-]?secret[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?bx[_-]?username[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?bx[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?bundlesize[_-]?github[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?built[_-]?branch[_-]?deploy[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n\
+      ]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?bucketeer[_-]?aws[_-]?secret[_-]?access[_-]?key[\"']?[^\\S\r\n]*[=:][^\\\
+      S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?bucketeer[_-]?aws[_-]?access[_-]?key[_-]?id[\"']?[^\\S\r\n]*[=:][^\\\
+      S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?browserstack[_-]?access[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?browser[_-]?stack[_-]?access[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n\
+      ]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?brackets[_-]?repo[_-]?oauth[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n\
+      ]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?bluemix[_-]?username[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?bluemix[_-]?pwd[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?bluemix[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?bluemix[_-]?pass[_-]?prod[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?bluemix[_-]?pass[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?bluemix[_-]?auth[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?bluemix[_-]?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?bintraykey[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?bintray[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?bintray[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?bintray[_-]?gpg[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?bintray[_-]?apikey[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?bintray[_-]?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?b2[_-]?bucket[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?b2[_-]?app[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?awssecretkey[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?awscn[_-]?secret[_-]?access[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n\
+      ]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?awscn[_-]?access[_-]?key[_-]?id[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?awsaccesskeyid[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?aws[_-]?ses[_-]?secret[_-]?access[_-]?key[\"']?[^\\S\r\n]*[=:][^\\\
+      S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?aws[_-]?ses[_-]?access[_-]?key[_-]?id[\"']?[^\\S\r\n]*[=:][^\\S\r\n\
+      ]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?aws[_-]?secrets[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?aws[_-]?secret[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?aws[_-]?secret[_-]?access[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?aws[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?aws[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?aws[_-]?config[_-]?secretaccesskey[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?aws[_-]?config[_-]?accesskeyid[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?aws[_-]?access[_-]?key[_-]?id[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?aws[_-]?access[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?aws[_-]?access[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?author[_-]?npm[_-]?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?author[_-]?email[_-]?addr[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?auth0[_-]?client[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?auth0[_-]?api[_-]?clientsecret[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?auth[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?assistant[_-]?iam[_-]?apikey[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?artifacts[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?artifacts[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?artifacts[_-]?bucket[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?artifacts[_-]?aws[_-]?secret[_-]?access[_-]?key[\"']?[^\\S\r\n]*[=:][^\\\
+      S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?artifacts[_-]?aws[_-]?access[_-]?key[_-]?id[\"']?[^\\S\r\n]*[=:][^\\\
+      S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?artifactory[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?argos[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?apple[_-]?id[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?appclientsecret[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?app[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?app[_-]?secrete[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?app[_-]?report[_-]?token[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?app[_-]?bucket[_-]?perm[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?apigw[_-]?access[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?apiary[_-]?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?api[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?api[_-]?key[_-]?sid[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?api[_-]?key[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?aos[_-]?sec[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?aos[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?ansible[_-]?vault[_-]?password[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?android[_-]?docs[_-]?deploy[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n\
+      ]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?anaconda[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?amazon[_-]?secret[_-]?access[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n\
+      ]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?amazon[_-]?bucket[_-]?name[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?alicloud[_-]?secret[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?alicloud[_-]?access[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?alias[_-]?pass[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?algolia[_-]?search[_-]?key[_-]?1[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?algolia[_-]?search[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?algolia[_-]?search[_-]?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?algolia[_-]?api[_-]?key[_-]?search[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?algolia[_-]?api[_-]?key[_-]?mcm[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?algolia[_-]?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?algolia[_-]?admin[_-]?key[_-]?mcm[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?algolia[_-]?admin[_-]?key[_-]?2[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?algolia[_-]?admin[_-]?key[_-]?1[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"\
+      ']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - '(?i)["'']?air[-_]?table[-_]?api[-_]?key["'']?[=:]["'']?.+["'']'
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?adzerk[_-]?api[_-]?key[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?admin[_-]?email[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?account[_-]?sid[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?access[_-]?token[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?access[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\w-]+[\"\
+      ']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - "'(?i)[\"']?access[_-]?key[_-]?secret[\"']?[^\\S\r\n]*[=:][^\\S\r\n]*[\"']?[\\\
+      w-]+[\"']?'"
+  - name: Credentials Disclosure Check
+    regex:
+    - '(?i)(([a-z0-9]+)[-|_])?(key|password|passwd|pass|pwd|private|credential|auth|cred|creds|secret|access|token)([-|_][a-z]+)?(\s)*(:|=)+'
+  - name: S3 Bucket Detect
+    regex:
+    - '[a-z0-9.-]+\.s3\.amazonaws\.com'
+  - name: S3 Bucket Detect
+    regex:
+    - '[a-z0-9.-]+\.s3-[a-z0-9-]\.amazonaws\.com'
+  - name: S3 Bucket Detect
+    regex:
+    - '[a-z0-9.-]+\.s3-website[.-](eu|ap|us|ca|sa|cn)'
+  - name: S3 Bucket Detect
+    regex:
+    - '//s3\.amazonaws\.com/[a-z0-9._-]+'
+  - name: S3 Bucket Detect
+    regex:
+    - '//s3-[a-z0-9-]+\.amazonaws\.com/[a-z0-9._-]+'
+  - name: Cloudinary Basic Authorization - Detect
+    regex:
+    - 'cloudinary://[0-9]{15}:[0-9A-Za-z\-_]+@[0-9A-Za-z\-_]+'
+  - name: Etsy Access Token
+    regex:
+    - '(?i)(?:etsy)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|'']|[\s|"]){0,3}(?:=|>|:=|\|\|:|<=|=>|:)(?:''|\"|\s|=|\x60){0,5}([a-z0-9]{24})(?:[''|\"|\n|\r|\s|\x60|;]|$)'
+  - name: Figma Personal Access Token
+    regex:
+    - '(?i)figma.{0,20}\b([0-9a-f]{4}-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\b'
+  - name: Mailgun API Key
+    regex:
+    - 'key-[0-9a-zA-Z]{32}'
+  - name: NuGet API Key
+    regex:
+    - '(oy2[a-z0-9]{43})'
+  - name: Firebase Database Detect
+    regex:
+    - '[a-z0-9.-]+\.firebaseio\.com'
+  - name: Firebase Database Detect
+    regex:
+    - '[a-z0-9.-]+\.firebaseapp\.com'
+  - name: Databricks API Token
+    regex:
+    - '(?i)\b(dapi[a-h0-9]{32})(?:[''|\"|\n|\r|\s|\x60|;]|$)'
+  - name: NPM Access Token (fine-grained)
+    regex:
+    - "'\b(npm_[A-Za-z0-9]{36})\b'"
+  - name: Shopify Access Token (Public App)
+    regex:
+    - '\b(shpat_[a-fA-F0-9]{32})\b'
+  - name: Linkedin Client ID
+    regex:
+    - '(?i)linkedin(.{0,20})?(?-i)[0-9a-z]{12}'
+  - name: Frameio API Token
+    regex:
+    - 'fio-u-(?i)[a-z0-9\-_=]{64}'
+  - name: Gitter Access Token
+    regex:
+    - '(?i)(?:gitter)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|'']|[\s|"]){0,3}(?:=|>|:=|\|\|:|<=|=>|:)(?:''|\"|\s|=|\x60){0,5}([a-z0-9_-]{40})(?:[''|\"|\n|\r|\s|\x60|;]|$)'
+  - name: Segment Public API Token
+    regex:
+    - '(sgp_[a-zA-Z0-9]{64})'
+  - name: Duffel API Token
+    regex:
+    - 'duffel_(test|live)_(?i)[a-z0-9_\-=]{43}'
+  - name: PyPI Upload Token
+    regex:
+    - '(pypi-AgEIcHlwaS5vcmc[a-zA-Z0-9_-]{50,})'
+  - name: StackHawk API Key
+    regex:
+    - 'hawk\.[0-9A-Za-z\-_]{20}\.[0-9A-Za-z\-_]{20}'
+  - name: Pictatic API Key
+    regex:
+    - 'sk_live_[0-9a-z]{32}'
+  - name: Razorpay Client ID
+    regex:
+    - 'rzp_(live|test)_.{14}'
+  - name: OpenAI API Key
+    regex:
+    - '\b(sk-[a-zA-Z0-9]{48})\b'
+  - name: Contentful Delivery API Token
+    regex:
+    - '(?i)(?:contentful)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|'']|[\s|"]){0,3}(?:=|>|:=|\|\|:|<=|=>|:)(?:''|\"|\s|=|\x60){0,5}([a-z0-9=_\-]{43})(?:[''|\"|\n|\r|\s|\x60|;]|$)'
+  - name: Coinbase Access Token
+    regex:
+    - '(?i)(?:coinbase)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|'']|[\s|"]){0,3}(?:=|>|:=|\|\|:|<=|=>|:)(?:''|\"|\s|=|\x60){0,5}([a-z0-9_-]{64})(?:[''|\"|\n|\r|\s|\x60|;]|$)'
+  - name: Shopify Custom App Access Token
+    regex:
+    - 'shpca_[a-fA-F0-9]{32}'
+  - name: Basic Authorization Credentials Check
+    regex:
+    - '[a-zA-Z]{3,10}://[^/\s:@]{3,20}:[^/\s:@]{3,20}@.{1,100}["''\s]'
+  - name: Code Climate Token - Detect
+    regex:
+    - '(?i)codeclima.{0,50}\b([a-f0-9]{64})\b'
+  - name: Shopify Shared Secret
+    regex:
+    - 'shpss_[a-fA-F0-9]{32}'
+  - name: Google (GCP) Service-account
+    regex:
+    - '"type": "service_account"'
+  - name: Finnhub Access Token
+    regex:
+    - '(?i)(?:finnhub)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|'']|[\s|"]){0,3}(?:=|>|:=|\|\|:|<=|=>|:)(?:''|\"|\s|=|\x60){0,5}([a-z0-9]{20})(?:[''|\"|\n|\r|\s|\x60|;]|$)'
+  - name: Sauce Access Token
+    regex:
+    - '(?i)sauce.{0,50}\b([a-f0-9-]{36})\b'
+  - name: Telegram Bot Token
+    regex:
+    - '\b(\d+:AA[a-zA-Z0-9_-]{32,33})'
+  - name: Zendesk Secret Key
+    regex:
+    - '(?i)(?:zendesk)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|'']|[\s|"]){0,3}(?:=|>|:=|\|\|:|<=|=>|:)(?:''|\"|\s|=|\x60){0,5}([a-z0-9]{40})(?:[''|\"|\n|\r|\s|\x60|;]|$)'
+  - name: Adafruit API Key
+    regex:
+    - '(?i)(?:adafruit)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|'']|[\s|"]){0,3}(?:=|>|:=|\|\|:|<=|=>|:)(?:''|\"|\s|=|\x60){0,5}([a-z0-9_-]{32})(?:[''|\"|\n|\r|\s|\x60|;]|$)'
+  - name: Dynatrace Token - Detect
+    regex:
+    - 'dt0[a-zA-Z]{1}[0-9]{2}\.[A-Z0-9]{24}\.[A-Z0-9]{64}'
+  - name: Clojars API Token
+    regex:
+    - '(?i)(CLOJARS_)[a-z0-9]{60}'
+  - name: Square Access Token
+    regex:
+    - 'EAAAE[a-zA-Z0-9_-]{59}'
+  - name: Square Access Token
+    regex:
+    - 'sq0atp-[0-9A-Za-z\-_]{22}'
+  - name: Fastly API Token
+    regex:
+    - '(?i)(?:fastly)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|'']|[\s|"]){0,3}(?:=|>|:=|\|\|:|<=|=>|:)(?:''|\"|\s|=|\x60){0,5}([a-z0-9=_\-]{32})(?:[''|\"|\n|\r|\s|\x60|;]|$)'
+  - name: Airtable API Key
+    regex:
+    - '(?i)(?:airtable)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|'']|[\s|"]){0,3}(?:=|>|:=|\|\|:|<=|=>|:)(?:''|\"|\s|=|\x60){0,5}([a-z0-9]{17})(?:[''|\"|\n|\r|\s|\x60|;]|$)'
+  - name: Crates.io API Key - Detect
+    regex:
+    - '\bcio[a-zA-Z0-9]{32}\b'
+  - name: Jenkins Token or Crumb
+    regex:
+    - '(?i)jenkins.{0,10}(?:crumb)?.{0,10}\b([0-9a-f]{32,36})\b'
+  - name: Zapier Webhook
+    regex:
+    - 'https://(?:www.)?hooks\.zapier\.com/hooks/catch/[A-Za-z0-9]+/[A-Za-z0-9]+/'
+  - name: Private Key Detect
+    regex:
+    - 'BEGIN OPENSSH PRIVATE KEY'
+  - name: Private Key Detect
+    regex:
+    - 'BEGIN PRIVATE KEY'
+  - name: Private Key Detect
+    regex:
+    - 'BEGIN RSA PRIVATE KEY'
+  - name: Private Key Detect
+    regex:
+    - 'BEGIN DSA PRIVATE KEY'
+  - name: Private Key Detect
+    regex:
+    - 'BEGIN EC PRIVATE KEY'
+  - name: Private Key Detect
+    regex:
+    - 'BEGIN PGP PRIVATE KEY BLOCK'
+  - name: Private Key Detect
+    regex:
+    - 'ssh-rsa'
+  - name: Private Key Detect
+    regex:
+    - 'ssh-dsa'
+  - name: Private Key Detect
+    regex:
+    - 'ssh-ed25519'
+  - name: Freshbooks Access Token
+    regex:
+    - 'fio-u-(?i)[a-z0-9\-_=]{64}'
+  - name: Stripe API Key
+    regex:
+    - '(?i)stripe(.{0,20})?[sr]k_live_[0-9a-zA-Z]{24}'
+  - name: Codecov Access Token
+    regex:
+    - '(?i)(?:codecov)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|'']|[\s|"]){0,3}(?:=|>|:=|\|\|:|<=|=>|:)(?:''|\"|\s|=|\x60){0,5}([a-z0-9]{32})(?:[''|\"|\n|\r|\s|\x60|;]|$)'
+  - name: Datadog Access Token
+    regex:
+    - '(?i)(?:datadog)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|'']|[\s|"]){0,3}(?:=|>|:=|\|\|:|<=|=>|:)(?:''|\"|\s|=|\x60){0,5}([a-z0-9]{40})(?:[''|\"|\n|\r|\s|\x60|;]|$)'
+  - name: Gocardless API Token
+    regex:
+    - '(?i)(?:gocardless)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|'']|[\s|"]){0,3}(?:=|>|:=|\|\|:|<=|=>|:)(?:''|\"|\s|=|\x60){0,5}(live_(?i)[a-z0-9\-_=]{40})(?:[''|\"|\n|\r|\s|\x60|;]|$)'
+  - name: Bittrex Access Key
+    regex:
+    - '(?i)(?:bittrex)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|'']|[\s|"]){0,3}(?:=|>|:=|\|\|:|<=|=>|:)(?:''|\"|\s|=|\x60){0,5}([a-z0-9]{32})(?:[''|\"|\n|\r|\s|\x60|;]|$)'
+  - name: Bittrex Secret Key
+    regex:
+    - '(?i)(?:bittrex)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|'']|[\s|"]){0,3}(?:=|>|:=|\|\|:|<=|=>|:)(?:''|\"|\s|=|\x60){0,5}([a-z0-9]{32})(?:[''|\"|\n|\r|\s|\x60|;]|$)'
+  - name: TrueNAS API Key (WebSocket)
+    regex:
+    - '"params"\s*:\s*\[\s*"(\d+-[a-zA-Z0-9]{64})"\s*\]'
+  - name: Finicity API Token
+    regex:
+    - '(?i)(?:finicity)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|'']|[\s|"]){0,3}(?:=|>|:=|\|\|:|<=|=>|:)(?:''|\"|\s|=|\x60){0,5}([a-f0-9]{32})(?:[''|\"|\n|\r|\s|\x60|;]|$)'
+  - name: Finicity Client Secret
+    regex:
+    - '(?i)(?:finicity)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|'']|[\s|"]){0,3}(?:=|>|:=|\|\|:|<=|=>|:)(?:''|\"|\s|=|\x60){0,5}([a-z0-9]{20})(?:[''|\"|\n|\r|\s|\x60|;]|$)'
+  - name: Twitter Client ID
+    regex:
+    - '(?i)\btwitter.?(?:api|app|application|client|consumer|customer)?.?(?:id|identifier|key).{0,2}\s{0,20}.{0,2}\s{0,20}.{0,2}\b([a-z0-9]{18,25})\b'
+  - name: Twitter Secret Key
+    regex:
+    - '(?i)twitter.?(?:api|app|application|client|consumer|customer|secret|key).?(?:key|oauth|sec|secret)?.{0,2}\s{0,20}.{0,2}\s{0,20}.{0,2}\b([a-z0-9]{35,44})\b'
+  - name: Confluent Secret Token
+    regex:
+    - '(?i)(?:confluent)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|'']|[\s|"]){0,3}(?:=|>|:=|\|\|:|<=|=>|:)(?:''|\"|\s|=|\x60){0,5}([a-z0-9]{64})(?:[''|\"|\n|\r|\s|\x60|;]|$)'
+  - name: Confluent Access Token
+    regex:
+    - '(?i)(?:confluent)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|'']|[\s|"]){0,3}(?:=|>|:=|\|\|:|<=|=>|:)(?:''|\"|\s|=|\x60){0,5}([a-z0-9]{16})(?:[''|\"|\n|\r|\s|\x60|;]|$)'
+  - name: Docker Hub Personal Access Token
+    regex:
+    - '\b(dckr_pat_[a-zA-Z0-9_-]{27})(?:$|[^a-zA-Z0-9_-])'
+  - name: Discord Client ID
+    regex:
+    - '(?i)(?:discord)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|'']|[\s|"]){0,3}(?:=|>|:=|\|\|:|<=|=>|:)(?:''|\"|\s|=|\x60){0,5}([0-9]{18})(?:[''|\"|\n|\r|\s|\x60|;]|$)'
+  - name: Discord API Token
+    regex:
+    - '(?i)(?:discord)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|'']|[\s|"]){0,3}(?:=|>|:=|\|\|:|<=|=>|:)(?:''|\"|\s|=|\x60){0,5}([a-f0-9]{64})(?:[''|\"|\n|\r|\s|\x60|;]|$)'
+  - name: Discord Client Secret
+    regex:
+    - '(?i)(?:discord)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|'']|[\s|"]){0,3}(?:=|>|:=|\|\|:|<=|=>|:)(?:''|\"|\s|=|\x60){0,5}([a-z0-9=_\-]{32})(?:[''|\"|\n|\r|\s|\x60|;]|$)'
+  - name: Amazon Web Services Cognito Pool ID - Detect
+    regex:
+    - '(ap|ca|eu|sa|us)-(east|southeast|south|west|north|central)-[0-9]:[0-9A-Za-z]{8}-[0-9A-Za-z]{4}-[0-9A-Za-z]{4}-[0-9A-Za-z]{4}-[0-9a-z]{12}'
+  - name: Amazon Web Services Account ID - Detect
+    regex:
+    - '(?i)aws_?(?:account)_?(?:id)?["''`]?\s{0,30}(?::|=>|=)\s{0,30}["''`]?([0-9]{4}-?[0-9]{4}-?[0-9]{4})'
+  - name: Amazon SNS Token - Detect
+    regex:
+    - 'arn:aws:sns:[a-z0-9\-]+:[0-9]+:[A-Za-z0-9\-_]+'
+  - name: Amazon MWS Authentication Token - Detect
+    regex:
+    - 'amzn\.mws\.[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+  - name: Amazon Session Token - Detect
+    regex:
+    - '(?i)(?:aws.?session|aws.?session.?token|aws.?token)["''`]?\s{0,30}(?::|=>|=)\s{0,30}["''`]?([a-z0-9/+=]{16,200})[^a-z0-9/+=]'
+  - name: Amazon Web Services Access Key ID - Detect
+    regex:
+    - '(A3T[A-Z0-9]|AKIA|AGPA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}'
+  - name: GitLab Runner Registration Token
+    regex:
+    - '\b(GR1348941[0-9a-zA-Z_-]{20})(?:\b|$)'
+  - name: GitLab Pipeline Trigger Token
+    regex:
+    - '\b(glptt-[0-9a-f]{40})\b'
+  - name: GitLab Personal Access Token
+    regex:
+    - '\b(glpat-[0-9a-zA-Z_-]{20})(?:\b|$)'
+  - name: Azure Connection String
+    regex:
+    - '(?i)(?:AccountName|SharedAccessKeyName|SharedSecretIssuer)\s*=\s*([^;]{1,80})\s*;\s*.{0,10}\s*(?:AccountKey|SharedAccessKey|SharedSecretValue)\s*=\s*([^;]{1,100})(?:;|$)'
+  - name: ThingsBoard Access Token
+    regex:
+    - 'thingsboard\.cloud/api/v1/([a-z0-9]{20})'
+  - name: Google API key
+    regex:
+    - 'AIza[0-9A-Za-z\-_]{35}'
+  - name: Google Client ID
+    regex:
+    - '(?i)\b([0-9]+-[a-z0-9_]{32})\.apps\.googleusercontent\.com'
+  - name: Google OAuth Client Secret (prefixed)
+    regex:
+    - '(GOCSPX-[a-zA-Z0-9_-]{28})'
+  - name: DigitalOcean Personal Access Token
+    regex:
+    - '(?i)\b(dop_v1_[a-f0-9]{64})\b'
+  - name: DigitalOcean Personal Access Token
+    regex:
+    - '(?i)\b(doo_v1_[a-f0-9]{64})\b'
+  - name: DigitalOcean Refresh Token
+    regex:
+    - '(?i)\b(dor_v1_[a-f0-9]{64})\b'
+  - name: Dependency Track API Key
+    regex:
+    - '\b(odt_[A-Za-z0-9]{32,255})\b'
+  - name: Grafana Cloud API Key
+    regex:
+    - '(?i)\b(glc_[A-Za-z0-9+/]{32,400}={0,2})(?:[''|\"|\n|\r|\s|\x60|;]|$)'
+  - name: Grafana Service Account Token
+    regex:
+    - '(?i)\b(glsa_[A-Za-z0-9]{32}_[A-Fa-f0-9]{8})(?:[''|\"|\n|\r|\s|\x60|;]|$)'
+  - name: Grafana API Key
+    regex:
+    - '(?i)\b(eyJrIjoi[A-Za-z0-9]{70,400}={0,2})(?:[''|\"|\n|\r|\s|\x60|;]|$)'
+  - name: Doppler Service Account Token
+    regex:
+    - '\b(dp\.sa\.[a-zA-Z0-9]{40,44})\b'
+  - name: Doppler Service
+    regex:
+    - '\b(dp\.st\.(?:[a-z0-9\-_]{2,35}\.)?[a-zA-Z0-9]{40,44})\b'
+  - name: Doppler Audit Token
+    regex:
+    - '\b(dp\.audit\.[a-zA-Z0-9]{40,44})\b'
+  - name: Doppler SCIM Token
+    regex:
+    - '\b(dp\.scim\.[a-zA-Z0-9]{40,44})\b'
+  - name: Doppler CLI Token
+    regex:
+    - '\b(dp\.ct\.[a-zA-Z0-9]{40,44})\b'
+  - name: Alibaba Secret Key ID
+    regex:
+    - '(?i)(?:alibaba)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|'']|[\s|"]){0,3}(?:=|>|:=|\|\|:|<=|=>|:)(?:''|\"|\s|=|\x60){0,5}([a-z0-9]{30})(?:[''|\"|\n|\r|\s|\x60|;]|$)'
+  - name: Alibaba Access Key ID
+    regex:
+    - '(?i)\b((LTAI)(?i)[a-z0-9]{20})(?:[''|\"|\n|\r|\s|\x60|;]|$)'
+  - name: Adobe OAuth Client Secret
+    regex:
+    - '(?i)\b(p8e-[a-z0-9-]{32})(?:[^a-z0-9-]|$)'
+  - name: Adobe Client ID
+    regex:
+    - '(?i)(?:adobe)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|'']|[\s|"]){0,3}(?:=|>|:=|\|\|:|<=|=>|:)(?:''|\"|\s|=|\x60){0,5}([a-f0-9]{32})(?:[''|\"|\n|\r|\s|\x60|;]|$)'
+  - name: Flutterwave Secret Key
+    regex:
+    - 'FLWSECK_TEST-(?i)[a-h0-9]{32}-X'
+  - name: Flutterwave Encryption Key
+    regex:
+    - 'FLWSECK_TEST-(?i)[a-h0-9]{12}'
+  - name: Flutterwave Public Key
+    regex:
+    - 'FLWPUBK_TEST-(?i)[a-h0-9]{32}-X'
+  - name: GitHub Outdated RSA SSH Host key
+    regex:
+    - 'SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8'
+  - name: GitHub Outdated RSA SSH Host key
+    regex:
+    - 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa\+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf\+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB\+weqqUUmpaaasXVal72J\+UX2B\+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7\+wC604ydGXA8VJiS5ap43JXiUFFAaQ=='
+  - name: Github App Token
+    regex:
+    - "'\b((?:ghu|ghs)_[a-zA-Z0-9]{36})\b'"
+  - name: Github Personal Token
+    regex:
+    - 'ghp_.{36}'
+  - name: Github Personal Token
+    regex:
+    - 'github_pat_.{82}'
+  - name: Github Refresh Token
+    regex:
+    - 'ghr_.{76}'
+  - name: Github OAuth Access Token
+    regex:
+    - 'gho_.{36}'
+  - name: Facebook Access Token
+    regex:
+    - '\b(EAACEdEose0cBA[a-zA-Z0-9]+)\b'
+  - name: Facebook API Token
+    regex:
+    - '(?i)(?:facebook)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|'']|[\s|"]){0,3}(?:=|>|:=|\|\|:|<=|=>|:)(?:''|\"|\s|=|\x60){0,5}([a-f0-9]{32})(?:[''|\"|\n|\r|\s|\x60|;]|$)'
+  - name: Facebook Client ID - Detect
+    regex:
+    - '(?i)(facebook|fb)(.{0,20})?[''"][0-9]{13,17}[''"]'
+  - name: Facebook Secret Key - Detect
+    regex:
+    - '(?i)(facebook|fb)(.{0,20})?(?-i)[''"][0-9a-f]{32}[''"]'
+  - name: Atlassian API Token
+    regex:
+    - '(?i)(?:atlassian|confluence|jira)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|'']|[\s|"]){0,3}(?:=|>|:=|\|\|:|<=|=>|:)(?:''|\"|\s|=|\x60){0,5}([a-z0-9]{24})(?:[''|\"|\n|\r|\s|\x60|;]|$)'
+  - name: Age Identity (X22519 secret key)
+    regex:
+    - '\bAGE-SECRET-KEY-1[0-9A-Z]{58}\b'
+  - name: Age Recipient (X25519 public key)
+    regex:
+    - '\bage1[0-9a-z]{58}\b'
+  - name: ODBC Connection String
+    regex:
+    - '(?i)(?:User|User\sId|UserId|Uid)\s*=\s*([^\s;]{3,100})\s*;[\ \t]*.{0,10}[\
+      \t]*(?:Password|Pwd)\s*=\s*([^\t\ ;]{3,100})\s*(?:[;]|$)'
+  - name: Okta API Token
+    regex:
+    - '(?i)(?s)(?:okta|ssws).{0,40}\b(00[a-z0-9_-]{39}[a-z0-9_])\b'
+  - name: Dropbox Long Lived API Token
+    regex:
+    - '(?i)(?:dropbox)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|'']|[\s|"]){0,3}(?:=|>|:=|\|\|:|<=|=>|:)(?:''|\"|\s|=|\x60){0,5}([a-z0-9]{11}(AAAAAAAAAA)[a-z0-9\-_=]{43})(?:[''|\"|\n|\r|\s|\x60|;]|$)'
+  - name: Dropbox Access Token
+    regex:
+    - '\b(sl\.[a-zA-Z0-9_-]{130,152})(?:$|[^a-zA-Z0-9_-])'
+  - name: Dropbox Short Lived API Token
+    regex:
+    - '(?i)(?:dropbox)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|'']|[\s|"]){0,3}(?:=|>|:=|\|\|:|<=|=>|:)(?:''|\"|\s|=|\x60){0,5}(sl\.[a-z0-9\-=_]{135})(?:[''|\"|\n|\r|\s|\x60|;]|$)'
+  - name: Dropbox API Token
+    regex:
+    - '(?i)(?:dropbox)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|'']|[\s|"]){0,3}(?:=|>|:=|\|\|:|<=|=>|:)(?:''|\"|\s|=|\x60){0,5}([a-z0-9]{15})(?:[''|\"|\n|\r|\s|\x60|;]|$)'
+  - name: Salesforce Access Token
+    regex:
+    - '\b(00[a-zA-Z0-9]{13}![a-zA-Z0-9._]{96})(?:\b|$|[^a-zA-Z0-9._])'
+  - name: New Relic Pixie API Key
+    regex:
+    - '(px-api-[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
+  - name: New Relic License Key
+    regex:
+    - '(?i)\b([a-z0-9]{6}[a-f0-9]{30}nral)\b'
+  - name: New Relic API Service Key
+    regex:
+    - '(?i)\b(nrak-[a-z0-9]{27})\b'
+  - name: New Relic Pixie Deploy Key
+    regex:
+    - '(px-dep-[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
+  - name: New Relic License Key (non-suffixed)
+    regex:
+    - '(?i)associated\ with\ your\ New\ Relic\ account\.\s+license_key:\s*([a-f0-9]{40})\b'
+  - name: HuggingFace User Access Token
+    regex:
+    - '\b(hf_[a-zA-Z]{34})\b'
+  - name: Easypost Test API Token
+    regex:
+    - 'EZTK(?i)[a-z0-9]{54}'
+  - name: Easypost Test API Token
+    regex:
+    - 'EZAK(?i)[a-z0-9]{54}'
+  - name: BitBucket Client ID
+    regex:
+    - '(?i)(?:bitbucket)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|'']|[\s|"]){0,3}(?:=|>|:=|\|\|:|<=|=>|:)(?:''|\"|\s|=|\x60){0,5}([a-z0-9]{32})(?:[''|\"|\n|\r|\s|\x60|;]|$)'
+  - name: BitBucket Client Secret
+    regex:
+    - '(?i)(?:bitbucket)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|'']|[\s|"]){0,3}(?:=|>|:=|\|\|:|<=|=>|:)(?:''|\"|\s|=|\x60){0,5}([a-z0-9=_\-]{64})(?:[''|\"|\n|\r|\s|\x60|;]|$)'
+  - name: kubernetes.io/dockercfg Secret
+    regex:
+    - '\.dockercfg:\s+["'']?e(w|y)[\w=]+["'']?'
+  - name: kubernetes.io/dockerconfigjson Secret
+    regex:
+    - '\.dockerconfigjson:\s+["'']?e(w|y)[\w=]+["'']?'
+  - name: WireGuard Preshared Key
+    regex:
+    - 'PresharedKey\s*=\s*([A-Za-z0-9+/]{43}=)'
+  - name: WireGuard Private Key
+    regex:
+    - 'PrivateKey\s*=\s*([A-Za-z0-9+/]{43}=)'
+  - name: particle.io Access Token
+    regex:
+    - 'https://api\.particle\.io/v1/[a-zA-Z0-9_\-\s/"\\?]*(?:access_token=|Authorization:\s*Bearer\s*)\b([a-zA-Z0-9]{40})\b'
+  - name: particle.io Access Token
+    regex:
+    - '(?:access_token=|Authorization:\s*Bearer\s*)\b([a-zA-Z0-9]{40})\b[\s"\\]*https://api\.particle\.io/v1'
+  - name: React App Username
+    regex:
+    - '\bREACT_APP(?:_[A-Z0-9]+)*_USER(?:\s+NAME)?\s*=\s*[''"]?([^\s''"$]{3,})(?:[\s''"$]|$)'
+  - name: React App Password
+    regex:
+    - '\bREACT_APP(?:_[A-Z0-9]+)*_PASS(?:\s+WORD)?\s*=\s*[''"]?([^\s''"$]{6,})(?:[\s''"$]|$)'
+  - name: Asana Client Secret
+    regex:
+    - '(?i)(?:asana)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|'']|[\s|"]){0,3}(?:=|>|:=|\|\|:|<=|=>|:)(?:''|\"|\s|=|\x60){0,5}([a-z0-9]{32})(?:[''|\"|\n|\r|\s|\x60|;]|$)'
+  - name: Asana Client ID
+    regex:
+    - '(?i)(?:asana)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|'']|[\s|"]){0,3}(?:=|>|:=|\|\|:|<=|=>|:)(?:''|\"|\s|=|\x60){0,5}([0-9]{16})(?:[''|\"|\n|\r|\s|\x60|;]|$)'
+  - name: LinkedIn Secret Key
+    regex:
+    - '(?i)linkedin.?(?:api|app|application|client|consumer|customer|secret|key).?(?:key|oauth|sec|secret)?.{0,2}\s{0,20}.{0,2}\s{0,20}.{0,2}\b([a-z0-9]{16})\b'
+  - name: LinkedIn Client ID
+    regex:
+    - '(?i)linkedin.?(?:api|app|application|client|consumer|customer)?.?(?:id|identifier|key).{0,2}\s{0,20}.{0,2}\s{0,20}.{0,2}\b([a-z0-9]{12,14})\b'
+  - name: Sift Key
+    regex:
+    - \.with(?:AccountId|BeaconKey)\(["|'].*["|']\)
+  - name: Sentry DSN
+    regex:
+    - 'https?://(\w+)(:\w+)?@sentry\.io/[0-9]+'
+  - name: Intercom API Key
+    regex:
+    - Intercom\.initialize\(["|']?\w+["|']?,\s?["|']?\w+["|']?,\s?["|']?\w+["|']?\)
+  - name: Singular Config
+    regex:
+    - SingularConfig\(["|']?[\w._]+["|']?,\s?["|']?[\w._]+["|']?\)
+  - name: Adjust Config
+    regex:
+    - AdjustConfig\(["|']?[\w]+["|']?,\s?["|']?[\w]+["|']?(,\s?["|']?[\w]+["|']?)?\)
+    - '([a|A]djust)?[C|c]onfig\.setAppSecret\(.*\)'
+  - name: Bitmovin API Key
+    regex:
+    - BITMOVIN_API_KEY\s?=\s?['|"]?.*['|"]?
+  - name: Salesforce MarketingCloud Token
+    regex:
+    - 'setAccessToken\(\w+.MC_ACCESS_TOKEN\)'
+  - name: AppDynamics Key
+    regex:
+    - 'AgentConfiguration\.builder\(\)(\s*)?([\.\w\(\)\s]+)\.withAppKey\(.*?\)'
+  - name: AppCenter Secret
+    regex:
+    - 'AppCenter\.(configure|start)\(.*\)'
+  - name: Mac Address
+    regex:
+      - '(([0-9A-Fa-f]{2}[:]){5}[0-9A-Fa-f]{2}|([0-9A-Fa-f]{2}[-]){5}[0-9A-Fa-f]{2}|([0-9A-Fa-f]{4}[\\.]){2}[0-9A-Fa-f]{4})$'
+  - name: HakcerOne CTF Flag
+    regex:
+      - '[h|H]1(?:[c|C][t|T][f|F])?\\{.*\\}'
+  - name: HackTheBox CTF Flag
+    regex:
+      - '[h|H](?:[a|A][c|C][k|K][t|T][h|H][e|E][b|B][o|O][x|X]|[t|T][b|B])\\{.*\\}$'
+  - name: Stripe Restricted Api Key
+    regex:
+      - 'rk_live_[0-9a-zA-Z]{24}'
+  - name: Defcon CTF Flag
+    regex:
+      - 'O{3}\\{.*\\}'
+  - name: Discord Bot Token
+    regex:
+      - '((?:N|M|O)[a-zA-Z0-9]{23}\\.[a-zA-Z0-9-_]{6}\\.[a-zA-Z0-9-_]{27})$'
+  - name: Artifactory API Token
+    regex:
+      - '(?:\\s|=|:|\"|^)AKC[a-zA-Z0-9]{10,}'
+  - name: Artifactory Password
+    regex:
+      - '(?:\\s|=|:|\"|^)AP[\\dABCDEF][a-zA-Z0-9]{8,}'
+  - name: Generic Api Key
+    regex:
+      - "[a|A][p|P][i|I][_]?[k|K][e|E][y|Y].*['|\"][0-9a-zA-Z]{32,45}['|\"]"
+  - name: Generic Secret
+    regex:
+      - "[s|S][e|E][c|C][r|R][e|E][t|T].*['|\"][0-9a-zA-Z]{32,45}['|\"]"
+  - name: Github
+    regex:
+      - "[g|G][i|I][t|T][h|H][u|U][b|B].*['|\"][0-9a-zA-Z]{35,40}['|\"]"
+  - name: Github Access Token
+    regex:
+      - '([a-zA-Z0-9_-]*:[a-zA-Z0-9_-]+@github.com*)$'
+  - name: Cloudinary Basic Auth
+    regex:
+    - cloudinary://[0-9]{15}:[0-9A-Za-z]+@[a-z]+
+  - name: DEFCON CTF Flag
+    regex:
+    - O{3}\{.*\}
+  - name: Discord BOT Token
+    regex:
+    - ((?:N|M|O)[a-zA-Z0-9]{23}\.[a-zA-Z0-9-_]{6}\.[a-zA-Z0-9-_]{27})$
+  - name: Facebook Access Token
+    regex:
+    - EAACEdEose0cBA[0-9A-Za-z]+
+  - name: Facebook ClientID
+    regex:
+    - '[f|F][a|A][c|C][e|E][b|B][o|O][o|O][k|K](.{0,20})?[''"][0-9]{13,17}'
+  - name: Facebook OAuth
+    regex:
+    - '[f|F][a|A][c|C][e|E][b|B][o|O][o|O][k|K].*[''|"][0-9a-f]{32}[''|"]'
+  - name: Facebook Secret Key
+    regex:
+    - ([f|F][a|A][c|C][e|E][b|B][o|O][o|O][k|K]|[f|F][b|B])(.{0,20})?['"][0-9a-f]{32}
+  - name: Firebase
+    regex:
+    - '[a-z0-9.-]+\.firebaseio\.com'
+  - name: Generic API Key
+    regex:
+    - '[a|A][p|P][i|I][_]?[k|K][e|E][y|Y].*[''|"][0-9a-zA-Z]{32,45}[''|"]'
+  - name: Generic Secret
+    regex:
+    - '[s|S][e|E][c|C][r|R][e|E][t|T].*[''|"][0-9a-zA-Z]{32,45}[''|"]'
+  - name: GitHub
+    regex:
+    - '[g|G][i|I][t|T][h|H][u|U][b|B].*[''|"][0-9a-zA-Z]{35,40}[''|"]'
+  - name: GitHub Access Token
+    regex:
+    - ([a-zA-Z0-9_-]*:[a-zA-Z0-9_-]+@github.com*)$
+  - name: Google API Key
+    regex:
+    - AIza[0-9A-Za-z\-_]{35}
+  - name: Google Cloud Platform OAuth
+    regex:
+    - '[0-9]+-[0-9A-Za-z_]{32}\.apps\.googleusercontent\.com'
+  - name: Google Cloud Platform Service Account
+    regex:
+    - '"type": "service_account"'
+  - name: Google OAuth Access Token
+    regex:
+    - ya29\.[0-9A-Za-z\-_]+
+  - name: HackerOne CTF Flag
+    regex:
+    - '[h|H]1(?:[c|C][t|T][f|F])?\{.*\}'
+  - name: HackTheBox CTF Flag
+    regex:
+    - '[h|H](?:[a|A][c|C][k|K][t|T][h|H][e|E][b|B][o|O][x|X]|[t|T][b|B])\{.*\}$'
+  - name: Heroku API Key
+    regex:
+    - '[h|H][e|E][r|R][o|O][k|K][u|U].*[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}'
+  - name: IP Address
+    regex:
+    - '(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])'
+  - name: MailChimp API Key
+    regex:
+    - '[0-9a-f]{32}-us[0-9]{1,2}'
+  - name: Mailgun API Key
+    regex:
+    - key-[0-9a-zA-Z]{32}
+  - name: Password in URL
+    regex:
+    - '[a-zA-Z]{3,10}://[^/\s:@]{3,20}:[^/\s:@]{3,20}@.{1,100}["''\s]'
+  - name: PayPal Braintree Access Token
+    regex:
+    - access_token\$production\$[0-9a-z]{16}\$[0-9a-f]{32}
+  - name: PGP private key block
+    regex:
+    - '-----BEGIN PGP PRIVATE KEY BLOCK-----'
+  - name: Picatic API Key
+    regex:
+    - sk_live_[0-9a-z]{32}
+  - name: RSA Private Key
+    regex:
+    - '-----BEGIN RSA PRIVATE KEY-----'
+  - name: Slack Token
+    regex:
+    - (xox[p|b|o|a]-[0-9]{12}-[0-9]{12}-[0-9]{12}-[a-z0-9]{32})
+  - name: Slack Webhook
+    regex:
+    - https://hooks.slack.com/services/T[a-zA-Z0-9_]{8}/B[a-zA-Z0-9_]{8}/[a-zA-Z0-9_]{24}
+  - name: Square Access Token
+    regex:
+    - sq0atp-[0-9A-Za-z\-_]{22}
+  - name: Square OAuth Secret
+    regex:
+    - sq0csp-[0-9A-Za-z\-_]{43}
+  - name: SSH DSA Private Key
+    regex:
+    - '-----BEGIN DSA PRIVATE KEY-----'
+  - name: SSH EC Private Key
+    regex:
+    - '-----BEGIN EC PRIVATE KEY-----'
+  - name: Stripe API Key
+    regex:
+    - sk_live_[0-9a-zA-Z]{24}
+  - name: Stripe Restricted API Key
+    regex:
+    - rk_live_[0-9a-zA-Z]{24}
+  - name: TryHackMe CTF Flag
+    regex:
+    - '[t|T](?:[r|R][y|Y][h|H][a|A][c|C][k|K][m|M][e|E]|[h|H][m|M])\{.*\}$'
+  - name: Twilio API Key
+    regex:
+    - SK[0-9a-fA-F]{32}
+  - name: Twitter Access Token
+    regex:
+    - '[t|T][w|W][i|I][t|T][t|T][e|E][r|R].*[1-9][0-9]+-[0-9a-zA-Z]{40}'
+  - name: Twitter ClientID
+    regex:
+    - '[t|T][w|W][i|I][t|T][t|T][e|E][r|R](.{0,20})?[''"][0-9a-z]{18,25}'
+  - name: Twitter OAuth
+    regex:
+    - '[t|T][w|W][i|I][t|T][t|T][e|E][r|R].*[''|"][0-9a-zA-Z]{35,44}[''|"]'
+  - name: Twitter Secret Key
+    regex:
+    - '[t|T][w|W][i|I][t|T][t|T][e|E][r|R](.{0,20})?[''"][0-9a-z]{35,44}'
