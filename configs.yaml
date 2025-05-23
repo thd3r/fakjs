@@ -10,6 +10,14 @@ patterns:
       - '[a-z0-9.-]+\\.s3-website[.-](eu|ap|us|ca|sa|cn)'
       - '[a-z0-9.-]+\\.s3\\.amazonaws\\.com'
       - 'amzn\\.mws\\.[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+  - name: API Key
+    regex:
+      - "(?i)apikey[\"']?\\s*[:=]\\s*[\"']?[A-Za-z0-9\\-\\._]{16,}"
+      - "(?i)api_key[\"']?\\s*[:=]\\s*[\"']?[A-Za-z0-9\\-\\._]{16,}"
+
+  - name: Token
+    regex:
+      - "(?i)token[\"']?\\s*[:=]\\s*[\"']?[A-Za-z0-9\\-\\._]{16,}"
   - name: GCS
     regex:
       - 'https?://(?:[\w\-]+\.)?storage\.googleapis\.com[\w\-\./]*'
