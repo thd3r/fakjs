@@ -8,7 +8,6 @@ import (
 	"os"
 	"strings"
 	"sync"
-	"time"
 )
 
 type Results struct {
@@ -20,9 +19,6 @@ type Results struct {
 func FakJsRunner(concurrency int) error {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
-
-	ctxReq, cancelReq := context.WithTimeout(ctx, 10*time.Second)
-	defer cancelReq()
 
 	std := bufio.NewScanner(os.Stdin)
 	if !std.Scan() && std.Err() == nil {
@@ -45,7 +41,7 @@ func FakJsRunner(concurrency int) error {
 
 			for url := range targets {
 
-				resp, err := client.Do(ctxReq, "GET", url)
+				resp, err := client.Do("GET", url)
 				if err != nil {
 					fmt.Printf("%s: fetching %s: %v\n", ColoredText("red", "error"), url, err)
 					continue

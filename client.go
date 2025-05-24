@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"crypto/tls"
 	"net"
 	"net/http"
@@ -36,8 +35,8 @@ func NewClient() *Client {
 	return &client
 }
 
-func (c *Client) Do(ctx context.Context, method, url string) (*http.Response, error) {
-	req, err := http.NewRequestWithContext(ctx, method, url, nil)
+func (c *Client) Do(method, url string) (*http.Response, error) {
+	req, err := http.NewRequest(method, url, nil)
 	if err != nil {
 		return nil, err
 	}
