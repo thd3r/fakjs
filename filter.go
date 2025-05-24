@@ -51,6 +51,9 @@ func FilteredDataOutput(s []string) []string {
 			continue
 		}
 
+		dataOut = strings.ReplaceAll(dataOut, `"`, "")
+		dataOut = strings.ReplaceAll(dataOut, `'`, "")
+
 		results = append(results, dataOut)
 	}
 
