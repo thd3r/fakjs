@@ -14,7 +14,7 @@ func init() {
 	██║     ██║  ██║██║  ██╗╚█████╔╝███████║
 	╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝ ╚════╝ ╚══════╝
 			  %s																		
-	`, VERSION)
+	`, Version())
 
 	fmt.Println(banner)
 }
@@ -29,6 +29,6 @@ func main() {
 	fmt.Printf(":: Generating report at %s\n", FilePath)
 
 	if err := FakJsRunner(concurrency); err != nil {
-		fmt.Printf("%s: %v", ColoredText("red", "error"), err)
+		fmt.Printf("%s: %v\n", ColoredText("red", "error"), err)
 	}
 }

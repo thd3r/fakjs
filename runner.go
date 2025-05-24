@@ -8,6 +8,7 @@ import (
 	"os"
 	"strings"
 	"sync"
+	"time"
 )
 
 type Results struct {
@@ -20,10 +21,12 @@ func FakJsRunner(concurrency int) error {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
+	ctxReq, cancelReq := context.WithTimeout(ctx, 10*time.Second)
+	defer cancelReq()
+
 	std := bufio.NewScanner(os.Stdin)
 	if !std.Scan() && std.Err() == nil {
 		fmt.Printf("%s: No input provided\n", ColoredText("red", "error"))
-		return nil
 	}
 
 	targets := make(chan string, concurrency)
@@ -42,12 +45,11 @@ func FakJsRunner(concurrency int) error {
 
 			for url := range targets {
 
-				resp, err := client.Do("GET", url)
+				resp, err := client.Do(ctxReq, "GET", url)
 				if err != nil {
-					fmt.Printf("%s: fetching %s: %v", ColoredText("red", "error"), url, err)
+					fmt.Printf("%s: fetching %s: %v\n", ColoredText("red", "error"), url, err)
 					continue
 				}
-				defer resp.Body.Close()
 
 				body, err := io.ReadAll(resp.Body)
 				if err != nil {
@@ -57,9 +59,11 @@ func FakJsRunner(concurrency int) error {
 
 				results <- Results{
 					StatusCode: resp.StatusCode,
-					Url: url,
-					Body: string(body),
+					Url:        url,
+					Body:       string(body),
 				}
+
+				resp.Body.Close()
 			}
 		}()
 	}
@@ -94,33 +98,33 @@ func FakJsRunner(concurrency int) error {
 	wgOut.Add(1)
 	go func() {
 		for res := range results {
-            data, err := ExtractData(res.Body)
-            if err != nil {
-                fmt.Printf("%s: extracting data for %s: %v\n", ColoredText("red", "error"), res.Url, err)
-                continue
-            }
-            for _, out := range data {
-                if len(out.DataOut) > 0 {
-                    fmt.Printf(
-                        "[%s] [%s] --- [%s] --- {%s}\n",
-                        ColoredText("blue", out.Name),
-                        ColoredText("magenta", out.Regex),
-                        ColoredText("green", strings.Join(out.DataOut, ", ")),
-                        ColoredText("cyan", res.Url),
-                    )
-                    finalResults <- FinalResults{
-						Url: res.Url,
-						Name: out.Name,
-						Regex: out.Regex,
+			data, err := ExtractData(res.Body)
+			if err != nil {
+				fmt.Printf("%s: extracting data for %s: %v\n", ColoredText("red", "error"), res.Url, err)
+				continue
+			}
+			for _, out := range data {
+				if len(out.DataOut) > 0 {
+					fmt.Printf(
+						"[%s] [%s] --- [%s] --- {%s}\n",
+						ColoredText("blue", out.Name),
+						ColoredText("magenta", out.Regex),
+						ColoredText("green", strings.Join(out.DataOut, ", ")),
+						ColoredText("cyan", res.Url),
+					)
+					finalResults <- FinalResults{
+						Url:     res.Url,
+						Name:    out.Name,
+						Regex:   out.Regex,
 						DataOut: out.DataOut,
 					}
-                }
-            }
-        }
+				}
+			}
+		}
 		wgOut.Done()
 	}()
 
-	 // Close finalResults channel when processing is done
+	// Close finalResults channel when processing is done
 	go func() {
 		wgOut.Wait()
 		close(finalResults)

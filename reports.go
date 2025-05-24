@@ -25,14 +25,14 @@ var FilePath = fmt.Sprintf("%s/fakjs-%v.json", os.TempDir(), time.Now().UnixNano
 func JsonReport(data chan FinalResults) error {
 	file, err := os.OpenFile(FilePath, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, 0644)
 	if err != nil {
-		fmt.Printf("%s: %v\n", ColoredText("red", "error"), err)
+		return err
 	}
 	defer file.Close()
 
 	var results DataOutput
 
 	results.Info = "fakjs-output"
-	results.Version = VERSION
+	results.Version = CurrentVersion
 	results.Timestamp = time.Now()
 
 	for d := range data {
@@ -50,7 +50,7 @@ func JsonReport(data chan FinalResults) error {
 	encoder.SetEscapeHTML(false)
 
 	if err := encoder.Encode(results); err != nil {
-		fmt.Printf("%s: %v\n", ColoredText("red", "error"), err)
+		return err
 	}
 
 	return nil
