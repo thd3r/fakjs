@@ -52,18 +52,34 @@ During penetration testing, bug bounty hunting, or red teaming, analyzing JavaSc
 go install -v github.com/thd3r/fakjs@latest
 ```
 
-## Usage
+## Usage List
 
-### The file contains JavaScript URLs
+### Read from stdin
+
+```sh
+echo https://myserver.com/chunks.js | fakjs
+```
 
 ```sh
 cat jsUrls.txt | fakjs
 ```
 
-###  Or
-
 ```sh
 cat cunks.js | fakjs
+```
+
+### Or
+
+```sh
+fakjs -target https://myserver.com/chunks.js
+```
+
+```sh
+fakjs -target jsUrls.txt
+```
+
+```sh
+fakjs -target chunks.js
 ```
 
 ---
