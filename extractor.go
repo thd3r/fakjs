@@ -26,14 +26,6 @@ type Configs struct {
 	Patterns []Patterns `yaml:"patterns"`
 }
 
-// FinalResults represents the extracted data for a single match.
-type FinalResults struct {
-	Url     string
-	Name    string
-	Regex   string
-	DataOut []string
-}
-
 var (
 	cachedConfigs *Configs
 	configOnce    sync.Once

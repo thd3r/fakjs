@@ -8,24 +8,25 @@ import (
 )
 
 type DataObj struct {
-	Name   string   `json:"name"`
-	Regex  string   `json:"regex"`
-	Result []string `json:"results"`
+	Target  string   `json:"target"`
+	Name    string   `json:"name"`
+	Regex   string   `json:"regex"`
+	Results []string `json:"results"`
 }
 
 type DataOutput struct {
-	Info      string               `json:"info"`
-	Version   string               `json:"version"`
-	Timestamp time.Time            `json:"timestamp"`
-	Data      []map[string]DataObj `json:"data"`
+	Info      string    `json:"info"`
+	Version   string    `json:"version"`
+	Timestamp time.Time `json:"timestamp"`
+	Output    []DataObj `json:"data_output"`
 }
 
 var FilePath = fmt.Sprintf("%s/fakjs-%v.json", os.TempDir(), time.Now().UnixNano())
 
-func JsonReport(data chan FinalResults) error {
+func JsonReport(data chan FinalResults) {
 	file, err := os.OpenFile(FilePath, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, 0644)
 	if err != nil {
-		return err
+		fmt.Printf("%s: %v\n", ColoredText("red", "error"), err)
 	}
 	defer file.Close()
 
@@ -36,12 +37,11 @@ func JsonReport(data chan FinalResults) error {
 	results.Timestamp = time.Now()
 
 	for d := range data {
-		results.Data = append(results.Data, map[string]DataObj{
-			d.Url: {
-				Name:   d.Name,
-				Regex:  d.Regex,
-				Result: d.DataOut,
-			},
+		results.Output = append(results.Output, DataObj{
+			Target:  d.Target,
+			Name:    d.Name,
+			Regex:   d.Regex,
+			Results: d.DataOut,
 		})
 	}
 
@@ -50,8 +50,6 @@ func JsonReport(data chan FinalResults) error {
 	encoder.SetEscapeHTML(false)
 
 	if err := encoder.Encode(results); err != nil {
-		return err
+		fmt.Printf("%s: %v\n", ColoredText("red", "error"), err)
 	}
-
-	return nil
 }

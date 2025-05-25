@@ -10,77 +10,131 @@ import (
 	"sync"
 )
 
-type Results struct {
-	StatusCode int
-	Url        string
-	Body       string
+type FakJsBase struct {
+	Args    string
+	Targets []string
+	Threads int
+	context.Context
 }
 
-func FakJsRunner(concurrency int) error {
+type Results struct {
+	Target  string
+	RawData string
+}
+
+type FinalResults struct {
+	Target  string
+	Name    string
+	Regex   string
+	DataOut []string
+}
+
+func NewFakJs(target string, threads int) *FakJsBase {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	std := bufio.NewScanner(os.Stdin)
-	if !std.Scan() && std.Err() == nil {
-		fmt.Printf("%s: No input provided\n", ColoredText("red", "error"))
+	var targets []string
+
+	// Check if the -target flag is given
+	if target != "" {
+		if isFile(target) {
+			// If target is a file, read the contents of the file as a list of targets.
+			file, err := os.Open(target)
+			if err != nil {
+				fmt.Printf("%s: %v\n", ColoredText("red", "error"), err)
+			}
+			defer file.Close()
+
+			line, err := readLinesWithContext(ctx, file)
+			if err != nil {
+				fmt.Printf("%s: %v\n", ColoredText("red", "error"), err)
+			}
+
+			targets = append(targets, line...)
+
+		} else {
+			// If not a file, assume a single target
+			targets = append(targets, target)
+		}
+
+	} else {
+		// Read from stdin
+		line, err := readLinesWithContext(ctx, os.Stdin)
+		if err != nil {
+			fmt.Printf("%s: %v\n", ColoredText("red", "error"), err)
+		}
+
+		targets = append(targets, line...)
 	}
 
-	targets := make(chan string, concurrency)
-	results := make(chan Results, concurrency)
-	finalResults := make(chan FinalResults, concurrency)
+	return &FakJsBase{
+		Args:    target,
+		Targets: targets,
+		Threads: threads,
+		Context: ctx,
+	}
+}
+
+func (base FakJsBase) FakJsRun() {
+	targets := make(chan string, base.Threads)
+	results := make(chan Results, base.Threads)
+	finalResults := make(chan FinalResults, base.Threads)
 
 	client := NewClient()
 
 	var wgReq sync.WaitGroup
 
-	for i := 0; i < concurrency; i++ {
+	for i := 0; i < base.Threads; i++ {
 		wgReq.Add(1)
 
 		go func() {
 			defer wgReq.Done()
 
-			for url := range targets {
+			for target := range targets {
 
-				resp, err := client.Do("GET", url)
-				if err != nil {
-					fmt.Printf("%s: fetching %s: %v\n", ColoredText("red", "error"), url, err)
-					continue
+				if strings.HasPrefix(target, "http") {
+					resp, err := client.Do("GET", target)
+					if err != nil {
+						fmt.Printf("%s: fetching %s: %v\n", ColoredText("red", "error"), target, err)
+						continue
+					}
+
+					body, err := io.ReadAll(resp.Body)
+					if err != nil {
+						fmt.Printf("%s: reading response body for %s: %v\n", ColoredText("red", "error"), target, err)
+						continue
+					}
+
+					results <- Results{
+						Target:  target,
+						RawData: string(body),
+					}
+
+					resp.Body.Close()
+
+				} else {
+					if base.Args == "" {
+						results <- Results{
+							Target:  "Unknown",
+							RawData: target,
+						}
+					} else {
+						results <- Results{
+							Target:  base.Args,
+							RawData: target,
+						}
+					}
 				}
-
-				body, err := io.ReadAll(resp.Body)
-				if err != nil {
-					fmt.Printf("%s: reading response body for %s: %v\n", ColoredText("red", "error"), url, err)
-					continue
-				}
-
-				results <- Results{
-					StatusCode: resp.StatusCode,
-					Url:        url,
-					Body:       string(body),
-				}
-
-				resp.Body.Close()
 			}
 		}()
 	}
 
-	// Read URLs from stdin
+	// Read Targets from stdin
 	go func() {
-		defer close(targets)
-		for {
-			select {
-			case <-ctx.Done():
-				return
-			default:
-				line := strings.TrimSpace(std.Text())
-				if line != "" {
-					targets <- line
-				}
-				if !std.Scan() {
-					return
-				}
-			}
+		for _, target := range base.Targets {
+			targets <- target
 		}
+		close(targets)
 	}()
 
 	// Close results channel when all requests are done
@@ -94,11 +148,12 @@ func FakJsRunner(concurrency int) error {
 	wgOut.Add(1)
 	go func() {
 		for res := range results {
-			data, err := ExtractData(res.Body)
+			data, err := ExtractData(res.RawData)
 			if err != nil {
-				fmt.Printf("%s: extracting data for %s: %v\n", ColoredText("red", "error"), res.Url, err)
+				fmt.Printf("%s: extracting data for %s: %v\n", ColoredText("red", "error"), res.Target, err)
 				continue
 			}
+
 			for _, out := range data {
 				if len(out.DataOut) > 0 {
 					fmt.Printf(
@@ -106,10 +161,10 @@ func FakJsRunner(concurrency int) error {
 						ColoredText("blue", out.Name),
 						ColoredText("magenta", out.Regex),
 						ColoredText("green", strings.Join(out.DataOut, ", ")),
-						ColoredText("cyan", res.Url),
+						ColoredText("cyan", res.Target),
 					)
 					finalResults <- FinalResults{
-						Url:     res.Url,
+						Target:  res.Target,
 						Name:    out.Name,
 						Regex:   out.Regex,
 						DataOut: out.DataOut,
@@ -126,5 +181,34 @@ func FakJsRunner(concurrency int) error {
 		close(finalResults)
 	}()
 
-	return JsonReport(finalResults)
+	JsonReport(finalResults)
+}
+
+func isFile(path string) bool {
+	info, err := os.Stat(path)
+	return err == nil && !info.IsDir()
+}
+
+func readLinesWithContext(ctx context.Context, reader io.Reader) ([]string, error) {
+	std := bufio.NewScanner(reader)
+
+	var lines []string
+	for {
+		select {
+		case <-ctx.Done():
+			return lines, ctx.Err()
+		default:
+			if !std.Scan() {
+				if err := std.Err(); err != nil {
+					return lines, err
+				}
+				return lines, nil
+			}
+
+			line := strings.TrimSpace(std.Text())
+			if line != "" {
+				lines = append(lines, line)
+			}
+		}
+	}
 }

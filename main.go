@@ -20,15 +20,17 @@ func init() {
 }
 
 func main() {
+	var target string
+	flag.StringVar(&target, "target", "", " single target or file containing multiple targets")
+
 	var concurrency int
-	flag.IntVar(&concurrency, "c", 40, "number of concurrent goroutines")
+	flag.IntVar(&concurrency, "threads", 40, "number of concurrent threads")
 
 	flag.Parse()
 
 	fmt.Println(":: Fakjs — extract sensitive info from JS")
 	fmt.Printf(":: Generating report at %s\n", FilePath)
 
-	if err := FakJsRunner(concurrency); err != nil {
-		fmt.Printf("%s: %v\n", ColoredText("red", "error"), err)
-	}
+	runner := NewFakJs(target, concurrency)
+	runner.FakJsRun()
 }
