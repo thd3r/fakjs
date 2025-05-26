@@ -160,7 +160,7 @@ func (base FakJsBase) FakJsRun() {
 						"[%s] [%s] --- [%s] --- {%s}\n",
 						ColoredText("blue", out.Name),
 						ColoredText("magenta", out.Regex),
-						ColoredText("green", strings.Join(out.DataOut, ", ")),
+						strings.Join(out.DataOut, ", "),
 						ColoredText("cyan", res.Target),
 					)
 					finalResults <- FinalResults{
