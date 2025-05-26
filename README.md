@@ -24,7 +24,7 @@
 
 ## 🔍 Why Fakjs?
 
-During penetration testing, bug bounty hunting, or red teaming, analyzing JavaScript files can lead to critical findings. Manual inspection is time-consuming — that's where **Fakjs** comes in. It uses pattern matching, regular expressions, and content heuristics to locate data that may be of interest from a security perspective.
+During penetration testing, bug bounty hunting, or red teaming, analyzing JavaScript files can lead to critical findings. Manual inspection is time-consuming, that's where **Fakjs** comes in. It uses pattern matching, regular expressions, and content heuristics to locate data that may be of interest from a security perspective.
 
 ## 🚀 Key Features
 
@@ -52,7 +52,7 @@ During penetration testing, bug bounty hunting, or red teaming, analyzing JavaSc
 go install -v github.com/thd3r/fakjs@latest
 ```
 
-## Usage List
+## Usage
 
 ### Read from stdin
 
