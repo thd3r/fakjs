@@ -23,7 +23,7 @@ func ColoredText(c, text string) string {
 	case "green":
 		green := color.New(color.FgHiGreen).SprintFunc()
 		return green(text)
+	default:
+		return text
 	}
-
-	return text
 }

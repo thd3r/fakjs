@@ -23,6 +23,9 @@ func main() {
 	var target string
 	flag.StringVar(&target, "target", "", " single target or file containing multiple targets")
 
+	var verbose bool
+	flag.BoolVar(&verbose, "verbose", false, "verbose mode")
+
 	var concurrency int
 	flag.IntVar(&concurrency, "threads", 40, "number of concurrent threads")
 
@@ -31,6 +34,6 @@ func main() {
 	fmt.Println(":: Fakjs — extract sensitive info from JS")
 	fmt.Printf(":: Generating report at %s\n", FilePath)
 
-	runner := NewFakJs(target, concurrency)
+	runner := NewFakJs(target, concurrency, verbose)
 	runner.FakJsRun()
 }

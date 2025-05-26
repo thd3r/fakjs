@@ -54,7 +54,7 @@ func FilteredDataOutput(s []string) []string {
 		dataOut = strings.ReplaceAll(dataOut, `"`, "")
 		dataOut = strings.ReplaceAll(dataOut, `'`, "")
 
-		results = append(results, ColoredText("green", dataOut))
+		results = append(results, dataOut)
 	}
 
 	return results

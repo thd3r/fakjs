@@ -52,4 +52,6 @@ func JsonReport(data chan FinalResults) {
 	if err := encoder.Encode(results); err != nil {
 		fmt.Printf("%s: %v\n", ColoredText("red", "error"), err)
 	}
+
+	fmt.Printf(":: Report saved to %s\n", FilePath)
 }

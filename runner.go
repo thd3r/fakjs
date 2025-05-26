@@ -14,6 +14,7 @@ type FakJsBase struct {
 	Args    string
 	Targets []string
 	Threads int
+	Verbose bool
 	context.Context
 }
 
@@ -29,7 +30,7 @@ type FinalResults struct {
 	DataOut []string
 }
 
-func NewFakJs(target string, threads int) *FakJsBase {
+func NewFakJs(target string, threads int, verbose bool) *FakJsBase {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
@@ -71,6 +72,7 @@ func NewFakJs(target string, threads int) *FakJsBase {
 		Args:    target,
 		Targets: targets,
 		Threads: threads,
+		Verbose: verbose,
 		Context: ctx,
 	}
 }
@@ -156,13 +158,23 @@ func (base FakJsBase) FakJsRun() {
 
 			for _, out := range data {
 				if len(out.DataOut) > 0 {
-					fmt.Printf(
-						"[%s] [%s] --- [%s] --- {%s}\n",
-						ColoredText("blue", out.Name),
-						ColoredText("magenta", out.Regex),
-						strings.Join(out.DataOut, ", "),
-						ColoredText("cyan", res.Target),
-					)
+					if base.Verbose == true {
+						fmt.Printf(
+							"[%s] [%s] —— [%s] —— {%s}\n",
+							ColoredText("blue", out.Name),
+							ColoredText("magenta", out.Regex),
+							ColoredText("green", strings.Join(out.DataOut, " ")),
+							ColoredText("cyan", res.Target),
+						)
+					} else {
+						fmt.Printf(
+							"[%s] —— [%s] —— {%s}\n",
+							ColoredText("blue", out.Name),
+							ColoredText("green", strings.Join(out.DataOut, " ")),
+							ColoredText("cyan", res.Target),
+						)
+					}
+
 					finalResults <- FinalResults{
 						Target:  res.Target,
 						Name:    out.Name,
