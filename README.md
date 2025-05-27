@@ -17,7 +17,7 @@
 ██╔══╝  ██╔══██║██╔═██╗ ██   ██║╚════██║
 ██║     ██║  ██║██║  ██╗╚█████╔╝███████║
 ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝ ╚════╝ ╚══════╝
-                  v1.0.7 latest																		
+                  v1.0.8 latest																		
 ```
 
 **Fakjs** is a fast, lightweight, and extensible tool written in Go, designed to extract potentially sensitive information from publicly accessible JavaScript files. It plays a crucial role in reconnaissance during security assessments, allowing you to discover information that might aid in understanding the inner workings of a web application or reveal unintended data exposures.
