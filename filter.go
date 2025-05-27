@@ -1,8 +1,17 @@
 package main
 
 import (
+	"fmt"
 	"strings"
 )
+
+func FilteredVerboseOutput(verbose bool, text string) {
+	if verbose == true {
+		fmt.Println(text)
+	} else {
+		return
+	}
+}
 
 func FilteredDataOutput(s []string) []string {
 	// See at https://github.com/profmoriarity/everythingjs/blob/main/everythingjs/app.py#L27

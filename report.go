@@ -23,10 +23,10 @@ type DataOutput struct {
 
 var FilePath = fmt.Sprintf("%s/fakjs-%v.json", os.TempDir(), time.Now().UnixNano())
 
-func JsonReport(data chan FinalResults) {
+func JsonReport(verbose bool, data chan FinalResults) {
 	file, err := os.OpenFile(FilePath, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, 0644)
 	if err != nil {
-		fmt.Printf("%s: %v\n", ColoredText("red", "error"), err)
+		FilteredVerboseOutput(verbose, fmt.Sprintf("%s: %v", ColoredText("red", "error"), err))
 	}
 	defer file.Close()
 
@@ -50,8 +50,10 @@ func JsonReport(data chan FinalResults) {
 	encoder.SetEscapeHTML(false)
 
 	if err := encoder.Encode(results); err != nil {
-		fmt.Printf("%s: %v\n", ColoredText("red", "error"), err)
+		FilteredVerboseOutput(verbose, fmt.Sprintf("%s: %v", ColoredText("red", "error"), err))
 	}
 
-	fmt.Printf(":: Report saved to %s\n", FilePath)
+	if len(results.Output) > 0 {
+		fmt.Printf(":: Report saved to %s\n", FilePath)
+	}
 }

@@ -42,13 +42,13 @@ func NewFakJs(target string, threads int, verbose bool) *FakJsBase {
 			// If target is a file, read the contents of the file as a list of targets.
 			file, err := os.Open(target)
 			if err != nil {
-				fmt.Printf("%s: %v\n", ColoredText("red", "error"), err)
+				FilteredVerboseOutput(verbose, fmt.Sprintf("%s: %v", ColoredText("red", "error"), err))
 			}
 			defer file.Close()
 
 			line, err := readLinesWithContext(ctx, file)
 			if err != nil {
-				fmt.Printf("%s: %v\n", ColoredText("red", "error"), err)
+				FilteredVerboseOutput(verbose, fmt.Sprintf("%s: %v", ColoredText("red", "error"), err))
 			}
 
 			targets = append(targets, line...)
@@ -62,7 +62,7 @@ func NewFakJs(target string, threads int, verbose bool) *FakJsBase {
 		// Read from stdin
 		line, err := readLinesWithContext(ctx, os.Stdin)
 		if err != nil {
-			fmt.Printf("%s: %v\n", ColoredText("red", "error"), err)
+			FilteredVerboseOutput(verbose, fmt.Sprintf("%s: %v", ColoredText("red", "error"), err))
 		}
 
 		targets = append(targets, line...)
@@ -97,13 +97,13 @@ func (base FakJsBase) FakJsRun() {
 				if strings.HasPrefix(target, "http") {
 					resp, err := client.Do("GET", target)
 					if err != nil {
-						fmt.Printf("%s: fetching %s: %v\n", ColoredText("red", "error"), target, err)
+						FilteredVerboseOutput(base.Verbose, fmt.Sprintf("%s: fetching %s: %v", ColoredText("red", "error"), target, err))
 						continue
 					}
 
 					body, err := io.ReadAll(resp.Body)
 					if err != nil {
-						fmt.Printf("%s: reading response body for %s: %v\n", ColoredText("red", "error"), target, err)
+						FilteredVerboseOutput(base.Verbose, fmt.Sprintf("%s: reading response body for %s: %v", ColoredText("red", "error"), target, err))
 						continue
 					}
 
@@ -152,7 +152,7 @@ func (base FakJsBase) FakJsRun() {
 		for res := range results {
 			data, err := ExtractData(res.RawData)
 			if err != nil {
-				fmt.Printf("%s: extracting data for %s: %v\n", ColoredText("red", "error"), res.Target, err)
+				FilteredVerboseOutput(base.Verbose, fmt.Sprintf("%s: extracting data for %s: %v", ColoredText("red", "error"), res.Target, err))
 				continue
 			}
 
@@ -160,18 +160,18 @@ func (base FakJsBase) FakJsRun() {
 				if len(out.DataOut) > 0 {
 					if base.Verbose == true {
 						fmt.Printf(
-							"[%s] [%s] —— [%s] —— {%s}\n",
+							"[%s] [%s] — {%s}\n%s\n",
 							ColoredText("blue", out.Name),
 							ColoredText("magenta", out.Regex),
-							ColoredText("green", strings.Join(out.DataOut, " ")),
 							ColoredText("cyan", res.Target),
+							ColoredText("green", strings.Join(out.DataOut, "\n")),
 						)
 					} else {
 						fmt.Printf(
-							"[%s] —— [%s] —— {%s}\n",
+							"[%s] — {%s}\n%s\n",
 							ColoredText("blue", out.Name),
-							ColoredText("green", strings.Join(out.DataOut, " ")),
 							ColoredText("cyan", res.Target),
+							ColoredText("green", strings.Join(out.DataOut, "\n")),
 						)
 					}
 
@@ -193,7 +193,7 @@ func (base FakJsBase) FakJsRun() {
 		close(finalResults)
 	}()
 
-	JsonReport(finalResults)
+	JsonReport(base.Verbose, finalResults)
 }
 
 func isFile(path string) bool {
