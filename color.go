@@ -21,7 +21,7 @@ func ColoredText(c, text string) string {
 		cyan := color.New(color.FgCyan).SprintFunc()
 		return cyan(text)
 	case "green":
-		green := color.New(color.FgHiGreen).SprintFunc()
+		green := color.New(color.FgGreen).SprintFunc()
 		return green(text)
 	default:
 		return text

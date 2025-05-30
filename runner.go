@@ -15,7 +15,6 @@ type FakJsBase struct {
 	Targets []string
 	Threads int
 	Verbose bool
-	context.Context
 }
 
 type Results struct {
@@ -73,7 +72,6 @@ func NewFakJs(target string, threads int, verbose bool) *FakJsBase {
 		Targets: targets,
 		Threads: threads,
 		Verbose: verbose,
-		Context: ctx,
 	}
 }
 
