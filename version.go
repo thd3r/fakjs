@@ -5,7 +5,7 @@ import (
 	"io"
 )
 
-var CurrentVersion = "v1.0.9"
+var CurrentVersion = "v1.1.0"
 
 func Version() string {
 	client := NewClient()
