@@ -14,7 +14,6 @@ func FilteredVerboseOutput(verbose bool, text string) {
 }
 
 func FilteredDataOutput(s []string) []string {
-	// See at https://github.com/profmoriarity/everythingjs/blob/main/everythingjs/app.py#L27
 	var blacklists = []string{
 		"node_modules", "jquery", "bootstrap", "react", "vue", "angular", "favicon.ico", "logo", "style.css",
 		"font-awesome", "materialize", "semantic-ui", "tailwindcss", "bulma", "d3", "chart.js", "three.js",
