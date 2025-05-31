@@ -17,7 +17,7 @@
 ██╔══╝  ██╔══██║██╔═██╗ ██   ██║╚════██║
 ██║     ██║  ██║██║  ██╗╚█████╔╝███████║
 ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝ ╚════╝ ╚══════╝
-                  v1.1.0 latest																		
+                  v1.1.1 latest																		
 ```
 
 **Fakjs** is a fast, lightweight, and extensible tool written in Go, designed to extract potentially sensitive information from publicly accessible JavaScript files. It plays a crucial role in reconnaissance during security assessments, allowing you to discover information that might aid in understanding the inner workings of a web application or reveal unintended data exposures.
@@ -92,5 +92,4 @@ fakjs -target chunks.js
 Since this tool includes some contributions, I'd like to publicly thank the following users for their help and resources, which provided regex patterns and guidance during the development of this project
 
 - [@DarkHacker420](https://github.com/DarkHacker420)
-- [@profmoriarity](https://github.com/profmoriarity)
 - [@dwisiswant0](https://github.com/dwisiswant0)
