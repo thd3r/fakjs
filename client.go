@@ -16,19 +16,19 @@ func NewClient() *Client {
 
 	client.client = &http.Client{
 		Transport: &http.Transport{
-			MaxIdleConns:        100,
-			MaxIdleConnsPerHost: 100,
-			MaxConnsPerHost:     100,
-			IdleConnTimeout:     time.Second,
-			DisableKeepAlives:   true,
+			MaxIdleConns:        500,
+			MaxIdleConnsPerHost: 250,
+			MaxConnsPerHost:     250,
 			TLSHandshakeTimeout: 15 * time.Second,
-			TLSClientConfig:     &tls.Config{InsecureSkipVerify: true},
+			TLSClientConfig: &tls.Config{
+				InsecureSkipVerify: true,
+				Renegotiation:      tls.RenegotiateOnceAsClient,
+			},
 			DialContext: (&net.Dialer{
-				Timeout:   10 * time.Second,
-				KeepAlive: time.Second,
+				Timeout: time.Duration(10) * time.Second,
 			}).DialContext,
 		},
-		Timeout:       10 * time.Second,
+		Timeout:       time.Duration(10) * time.Second,
 		CheckRedirect: func(req *http.Request, via []*http.Request) error { return http.ErrUseLastResponse },
 	}
 
@@ -42,9 +42,7 @@ func (c *Client) Do(method, url string) (*http.Response, error) {
 	}
 
 	req.Header.Set("User-Agent", RandomAgents())
-	req.Header.Set("Connection", "close")
-
-	req.Close = true
+	req.Header.Set("Accept", "*/*")
 
 	resp, err := c.client.Do(req)
 	if err != nil {

@@ -5,7 +5,7 @@ import (
 	"io"
 )
 
-var CurrentVersion = "v1.1.0"
+var CurrentVersion = "v1.1.2"
 
 func Version() string {
 	client := NewClient()
@@ -36,5 +36,5 @@ func Version() string {
 		return CurrentVersion + " " + ColoredText("green", "latest")
 	}
 
-	return CurrentVersion
+	return CurrentVersion + " " + ColoredText("magenta", "unknown")
 }

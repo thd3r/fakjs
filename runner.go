@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bufio"
 	"context"
 	"fmt"
 	"io"
@@ -15,6 +14,7 @@ type FakJsBase struct {
 	Targets []string
 	Threads int
 	Verbose bool
+	*Client
 }
 
 type Results struct {
@@ -37,7 +37,7 @@ func NewFakJs(target string, threads int, verbose bool) *FakJsBase {
 
 	// Check if the -target flag is given
 	if target != "" {
-		if isFile(target) {
+		if IsFile(target) {
 			// If target is a file, read the contents of the file as a list of targets.
 			file, err := os.Open(target)
 			if err != nil {
@@ -45,7 +45,7 @@ func NewFakJs(target string, threads int, verbose bool) *FakJsBase {
 			}
 			defer file.Close()
 
-			line, err := readLinesWithContext(ctx, file)
+			line, err := ReadLinesWithContext(ctx, file)
 			if err != nil {
 				FilteredVerboseOutput(verbose, fmt.Sprintf("%s: %v", ColoredText("red", "error"), err))
 			}
@@ -59,7 +59,7 @@ func NewFakJs(target string, threads int, verbose bool) *FakJsBase {
 
 	} else {
 		// Read from stdin
-		line, err := readLinesWithContext(ctx, os.Stdin)
+		line, err := ReadLinesWithContext(ctx, os.Stdin)
 		if err != nil {
 			FilteredVerboseOutput(verbose, fmt.Sprintf("%s: %v", ColoredText("red", "error"), err))
 		}
@@ -67,11 +67,14 @@ func NewFakJs(target string, threads int, verbose bool) *FakJsBase {
 		targets = append(targets, line...)
 	}
 
+	client := NewClient()
+
 	return &FakJsBase{
 		Args:    target,
 		Targets: targets,
 		Threads: threads,
 		Verbose: verbose,
+		Client:  client,
 	}
 }
 
@@ -79,8 +82,6 @@ func (base FakJsBase) FakJsRun() {
 	targets := make(chan string, base.Threads)
 	results := make(chan Results, base.Threads)
 	finalResults := make(chan FinalResults, base.Threads)
-
-	client := NewClient()
 
 	var wgReq sync.WaitGroup
 
@@ -93,7 +94,7 @@ func (base FakJsBase) FakJsRun() {
 			for target := range targets {
 
 				if strings.HasPrefix(target, "http") {
-					resp, err := client.Do("GET", target)
+					resp, err := base.Client.Do("GET", target)
 					if err != nil {
 						FilteredVerboseOutput(base.Verbose, fmt.Sprintf("%s: fetching %s: %v", ColoredText("red", "error"), target, err))
 						continue
@@ -156,7 +157,7 @@ func (base FakJsBase) FakJsRun() {
 
 			for _, out := range data {
 				if len(out.DataOut) > 0 {
-					if base.Verbose == true {
+					if base.Verbose {
 						fmt.Printf(
 							"[%s] [%s] — {%s}\n%s\n",
 							ColoredText("blue", out.Name),
@@ -192,33 +193,4 @@ func (base FakJsBase) FakJsRun() {
 	}()
 
 	JsonReport(base.Verbose, finalResults)
-}
-
-func isFile(path string) bool {
-	info, err := os.Stat(path)
-	return err == nil && !info.IsDir()
-}
-
-func readLinesWithContext(ctx context.Context, reader io.Reader) ([]string, error) {
-	std := bufio.NewScanner(reader)
-
-	var lines []string
-	for {
-		select {
-		case <-ctx.Done():
-			return lines, ctx.Err()
-		default:
-			if !std.Scan() {
-				if err := std.Err(); err != nil {
-					return lines, err
-				}
-				return lines, nil
-			}
-
-			line := strings.TrimSpace(std.Text())
-			if line != "" {
-				lines = append(lines, line)
-			}
-		}
-	}
 }

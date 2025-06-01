@@ -24,7 +24,7 @@ type DataOutput struct {
 var FilePath = fmt.Sprintf("%s/fakjs-%v.json", os.TempDir(), time.Now().UnixNano())
 
 func JsonReport(verbose bool, data chan FinalResults) {
-	file, err := os.OpenFile(FilePath, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, 0644)
+	file, err := os.OpenFile(FilePath, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0644)
 	if err != nil {
 		FilteredVerboseOutput(verbose, fmt.Sprintf("%s: %v", ColoredText("red", "error"), err))
 	}
@@ -32,7 +32,7 @@ func JsonReport(verbose bool, data chan FinalResults) {
 
 	var results DataOutput
 
-	results.Info = "fakjs-output"
+	results.Info = "FakJs-Output"
 	results.Version = CurrentVersion
 	results.Timestamp = time.Now()
 

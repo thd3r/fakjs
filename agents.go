@@ -2,7 +2,6 @@ package main
 
 import (
 	"math/rand"
-	"time"
 )
 
 func RandomAgents() string {
@@ -39,8 +38,6 @@ func RandomAgents() string {
 		"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:96.0) Gecko/20100101 Firefox/96.0",
 	}
 
-	rand.Seed(time.Now().UnixNano())
 	randomIndex := rand.Intn(len(userAgents))
-
 	return userAgents[randomIndex]
 }

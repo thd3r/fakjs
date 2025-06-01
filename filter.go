@@ -6,7 +6,7 @@ import (
 )
 
 func FilteredVerboseOutput(verbose bool, text string) {
-	if verbose == true {
+	if verbose {
 		fmt.Println(text)
 	} else {
 		return
