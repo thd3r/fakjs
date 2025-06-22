@@ -1,4 +1,0 @@
-http://indeed.com
-http://indeed.com/
-https://indeed.com/
-http://indeed.com/cmp/craftlogic-software
