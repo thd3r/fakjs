@@ -38,33 +38,34 @@ func NewFakJs(target string, threads int, verbose bool) *FakJsBase {
 	// Check if the -target flag is given
 	if target != "" {
 		if IsFile(target) {
-			// If target is a file, read the contents of the file as a list of targets.
 			file, err := os.Open(target)
 			if err != nil {
-				FilteredVerboseOutput(verbose, fmt.Sprintf("%s: %v", ColoredText("red", "error"), err))
+				fmt.Printf("%s: failed to open file: %v\n", ColoredText("red", "error"), err)
+				os.Exit(1)
 			}
 			defer file.Close()
 
-			line, err := ReadLinesWithContext(ctx, file)
+			lines, err := ReadLinesWithContext(ctx, file)
 			if err != nil {
-				FilteredVerboseOutput(verbose, fmt.Sprintf("%s: %v", ColoredText("red", "error"), err))
+				fmt.Printf("%s: failed to read lines from file: %v\n", ColoredText("red", "error"), err)
+				os.Exit(1)
 			}
 
-			targets = append(targets, line...)
-
+			targets = append(targets, lines...)
 		} else {
-			// If not a file, assume a single target
 			targets = append(targets, target)
 		}
-
 	} else {
-		// Read from stdin
-		line, err := ReadLinesWithContext(ctx, os.Stdin)
+		lines, err := ReadLinesWithContext(ctx, os.Stdin)
 		if err != nil {
-			FilteredVerboseOutput(verbose, fmt.Sprintf("%s: %v", ColoredText("red", "error"), err))
+			fmt.Printf("%s: failed to read from stdin: %v\n", ColoredText("red", "error"), err)
 		}
+		targets = append(targets, lines...)
+	}
 
-		targets = append(targets, line...)
+	if len(targets) == 0 {
+		fmt.Printf("%s: no targets provided\n", ColoredText("red", "error"))
+		os.Exit(1)
 	}
 
 	client := NewClient()
