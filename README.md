@@ -17,7 +17,7 @@
 ██╔══╝  ██╔══██║██╔═██╗ ██   ██║╚════██║
 ██║     ██║  ██║██║  ██╗╚█████╔╝███████║
 ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝ ╚════╝ ╚══════╝
-                  v1.1.2 latest																		
+                  v1.1.3 latest																		
 ```
 
 **Fakjs** is a fast, lightweight, and extensible tool written in Go, designed to extract potentially sensitive information from publicly accessible JavaScript files. It plays a crucial role in reconnaissance during security assessments, allowing you to discover information that might aid in understanding the inner workings of a web application or reveal unintended data exposures.
@@ -84,7 +84,8 @@ fakjs -target chunks.js
 
 ---
 > [!TIP]
-> **Fakjs** automatically generates a report and saves it to a temporary folder.
+> * **Fakjs** automatically reads target input from Stdin or the `-target` flag.
+> * **Fakjs** automatically generates a report and saves it to a temporary folder.
 ---
 
 ## Acknowledments
