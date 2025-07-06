@@ -22,19 +22,19 @@
 
 **Fakjs** is a fast, lightweight, and extensible tool written in Go, designed to extract potentially sensitive information from publicly accessible JavaScript files. It plays a crucial role in reconnaissance during security assessments, allowing you to discover information that might aid in understanding the inner workings of a web application or reveal unintended data exposures.
 
-## 🔍 Why Fakjs?
+## Why Fakjs?
 
 During penetration testing, bug bounty hunting, or red teaming, analyzing JavaScript files can lead to critical findings. Manual inspection is time-consuming, that's where **Fakjs** comes in. It uses pattern matching, regular expressions, and content heuristics to locate data that may be of interest from a security perspective.
 
-## 🚀 Key Features
+## Key Features
 
-- ⚡ **High Performance:** Written in Go for fast execution and low memory usage.
-- 🔎 **Automated Detection:** Identifies potential sensitive content through customizable regex-based scanning.
-- 🌐 **Remote & Local Support:** Analyze JavaScript from URLs or local file paths.
-- 🧠 **Recon-Friendly:** Ideal for OSINT, bug bounty, pentesting, or passive reconnaissance.
-- 🛠️ **Easily Integratable:** Can be used standalone or integrated into larger recon pipelines.
+- **High Performance:** Written in Go for fast execution and low memory usage.
+- **Automated Detection:** Identifies potential sensitive content through customizable regex-based scanning.
+- **Remote & Local Support:** Analyze JavaScript from URLs or local file paths.
+- **Recon-Friendly:** Ideal for OSINT, bug bounty, pentesting, or passive reconnaissance.
+- **Easily Integratable:** Can be used standalone or integrated into larger recon pipelines.
 
-## 🧪 What It Looks For
+## What It Looks For
 
 - Hardcoded secrets (API keys, tokens, etc.)
 - Internal or hidden endpoints
@@ -84,7 +84,7 @@ fakjs -target chunks.js
 
 ---
 > [!TIP]
-> * **Fakjs** automatically reads target input from Stdin or the `-target` flag.
+> * **Fakjs** automatically reads target input from `stdin` or the `-target` flag.
 > * **Fakjs** automatically generates a report and saves it to a temporary folder.
 ---
 
